@@ -1,0 +1,29 @@
+@media (hover: none) {
+    /* 터치 디바이스에서 호버 효과 제거 */
+    .betting-button:hover,
+    .chip:hover,
+    .action-btn:hover {
+        transform: none;
+    }
+
+    /* 터치 피드백 추가 */
+    .betting-button:active,
+    .chip:active,
+    .action-btn:active {
+        transform: scale(0.95);
+    }
+
+    /* 터치 영역 확대 */
+    .betting-button,
+    .chip,
+    .action-btn {
+        min-height: 44px;
+        padding: 12px;
+    }
+
+    /* 터치 간격 확보 */
+    .betting-controls,
+    .chip-controls {
+        gap: 12px;
+    }
+} 

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ex.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="ex.js"></script>
+    <script src="point-conversion.js"></script>
+    <title>NM Casino - 입금신청</title>
+</head>
+<body class="main-page">
+    <!-- topbar와 nav 영역 -->
+    <div id="topbarnav-container"></div>
+
+    <!-- quick menu 영역 -->
+    <div id="quick-menu-container"></div>
+
+    <!-- 마이페이지 컨텐츠 -->
+    <div class="mypage-container">
+        <div class="mypage-title">마이페이지</div>
+
+        <!-- 상단 메뉴 탭 -->
+        <div class="mypage-menu-tab">
+            <a href="#" class="menu-tab">내정보</a>
+            <a href="#" class="menu-tab active">입금</a>
+            <a href="#" class="menu-tab">출금</a>
+            <a href="#" class="menu-tab">입출금내역</a>
+            <a href="#" class="menu-tab">베팅내역</a>
+            <a href="#" class="menu-tab support-tab">
+                고객센터
+                <span class="support-badge" style="display: inline-flex;">2</span>
+            </a>
+        </div>
+
+        <!-- 입금 신청 폼 -->
+        <div class="deposit-form">
+            <div class="form-title">입금 신청</div>
+            
+            <!-- 보유금/포인트 정보 -->
+            <div class="balance-info">
+                <div class="balance-item">
+                    <span class="balance-label">보유금액</span>
+                    <div class="balance-value">
+                        <span class="point-amount">100,000,000</span>
+                        <span class="point-unit">원</span>
+                    </div>
+                    <button class="refresh-button">
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.5 2.5V0L4.375 3.125L7.5 6.25V3.75C9.8125 3.75 11.25 6.25 10 8.125L11.875 10C14.375 6.875 12.5 2.5 7.5 2.5Z" fill="#EEAD4F"/>
+                            <path d="M7.5 11.25C5.1875 11.25 3.75 8.75 5 6.875L3.125 5C0.625 8.125 2.5 12.5 7.5 12.5V15L10.625 11.875L7.5 8.75V11.25Z" fill="#EEAD4F"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="balance-item">
+                    <span class="balance-label">포인트</span>
+                    <div class="point-container">
+                        <div class="balance-value">
+                            <span class="point-amount">1,000,000</span>
+                            <span class="point-unit">P</span>
+                        </div>
+                        <button class="refresh-button">
+                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.5 2.5V0L4.375 3.125L7.5 6.25V3.75C9.8125 3.75 11.25 6.25 10 8.125L11.875 10C14.375 6.875 12.5 2.5 7.5 2.5Z" fill="#EEAD4F"/>
+                                <path d="M7.5 11.25C5.1875 11.25 3.75 8.75 5 6.875L3.125 5C0.625 8.125 2.5 12.5 7.5 12.5V15L10.625 11.875L7.5 8.75V11.25Z" fill="#EEAD4F"/>
+                            </svg>
+                        </button>
+                        <button class="convert-button">전환</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 입금계좌 확인 영역 -->
+            <div class="account-check-area">
+                <button class="account-inquiry-btn">입금계좌문의</button>
+                <div class="account-field">
+                    <input type="text" readonly class="form-input" placeholder="입금계좌를 확인해주세요">
+                </div>
+            </div>
+
+            <div class="form-content">
+                <!-- 입금자명 -->
+                <div class="form-row">
+                    <div class="form-label">입금자명</div>
+                    <div class="depositor-info">
+                        <input type="text" class="form-input" value="김민재 110-228-723783 신한은행" readonly>
+                    </div>
+                </div>
+
+                <!-- 신청금액 -->
+                <div class="form-row">
+                    <div class="form-label">신청금액</div>
+                    <div class="amount-input-group">
+                        <div class="amount-submit-group">
+                            <input type="text" class="form-input" placeholder="신청금액을 입력해주세요">
+                            <button class="submit-btn">입금신청</button>
+                        </div>
+                        <div class="quick-amount-buttons">
+                            <button>1만원</button>
+                            <button>5만원</button>
+                            <button>10만원</button>
+                            <button>50만원</button>
+                            <button>100만원</button>
+                            <button>정정</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 입금 유의사항 -->
+        <div class="deposit-warning">
+            <div class="warning-title">입금 유의사항!!</div>
+            <ul class="warning-list">
+                <li>회원 가입 시 입력하신 입금자명으로 입금셔야 합니다.</li>
+                <li>최소입금과 입금자명이 불일치시 충전 처리가 불가합니다.</li>
+                <li>은행 점검 시간(23:00~00:30) 동안은 입출금이 지연될 수 있습니다.</li>
+                <li>입금 계좌가 수시로 변경될 수 있으니 입금 전 계좌번호를 확인해 주시기 바랍니다.</li>
+                <li>입금계좌로의 재 신청은 0분 후 가능합니다.</li>
+            </ul>
+        </div>
+
+        <!-- 입금계좌문의 내역 테이블 -->
+        <div class="mypage-notice-table">
+            <div class="mypage-notice-header">
+                <div class="mypage-notice-type">구분</div>
+                <div class="mypage-notice-title">내용</div>
+                <div class="mypage-notice-date">등록일</div>
+            </div>
+            <div class="mypage-notice-row">
+                <div class="mypage-notice-type">1</div>
+                <div class="mypage-notice-title">계좌문의</div>
+                <div class="mypage-notice-date">2024-11-12 15:32:11</div>
+            </div>
+            <div class="mypage-notice-row">
+                <div class="mypage-notice-type">2</div>
+                <div class="mypage-notice-title">계좌문의</div>
+                <div class="mypage-notice-date">2024-11-12 14:25:33</div>
+            </div>
+            <div class="mypage-notice-row">
+                <div class="mypage-notice-type">3</div>
+                <div class="mypage-notice-title">계좌문의</div>
+                <div class="mypage-notice-date">2024-11-12 13:15:42</div>
+            </div>
+            <div class="mypage-notice-row">
+                <div class="mypage-notice-type">4</div>
+                <div class="mypage-notice-title">계좌문의</div>
+                <div class="mypage-notice-date">2024-11-12 12:05:18</div>
+            </div>
+            <div class="mypage-notice-row">
+                <div class="mypage-notice-type">5</div>
+                <div class="mypage-notice-title">계좌문의</div>
+                <div class="mypage-notice-date">2024-11-12 11:47:55</div>
+            </div>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <div class="pagination">
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+        </div>
+    </div>
+
+    <!-- footer 영역 -->
+    <div id="footer-container"></div>
+
+    <!-- 모달 추가 -->
+    <div class="modal" id="alertModal">
+        <div class="modal-content">
+            <div class="modal-logo">
+                <img src="img/nm_logo.svg">
+            </div>
+            <div class="modal-text">입금계좌신청을 먼저하여 계좌를 받고 입금 부탁드립니다.</div>
+            <button class="modal-confirm">확인</button>
+        </div>
+    </div>
+
+    <!-- 확인 모달 추가 -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-logo">
+                <img src="img/nm_logo.svg">
+            </div>
+            <div class="modal-text">포인트 전환 하시겠습니까?</div>
+            <div class="modal-buttons">
+                <button class="modal-confirm">확인</button>
+                <button class="modal-cancel">취소</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // 공통 로드
+            $("#topbarnav-container").load("topbarnav.html");
+            $("#quick-menu-container").load("ex.html #quick-menu");
+            $("#footer-container").load("footer.html");
+
+            // 재신청 대기시간 설정 (분 단위)
+            const waitingTime = 2; // 3분으로 설정 (변경 가능)
+            $('.warning-list li:last-child').html(`입금계좌로의 재 신청은 ${waitingTime}분 후 가능합니다.`);
+
+            // 금액 입력 필드에 이벤트 리스너 추가
+            $('.amount-input-group .form-input').on('input', function() {
+                // 숫자만 추출
+                let value = $(this).val().replace(/[^\d]/g, '');
+                
+                // 값이 있을 경우에만 처리
+                if (value) {
+                    // 천단위 콤마 추가
+                    const formattedValue = parseInt(value).toLocaleString('ko-KR');
+                    $(this).val(formattedValue);
+                }
+            });
+
+            // 금액 버튼 클릭 이벤트 수정
+            $('.quick-amount-buttons button').not(':last-child').on('click', function() {
+                const amountText = $(this).text();
+                let clickedAmount = 0;
+                
+                if (amountText.includes('만원')) {
+                    clickedAmount = parseInt(amountText.replace('만원', '')) * 10000;
+                }
+                
+                const currentInput = $('.amount-input-group .form-input').val();
+                let currentAmount = 0;
+                
+                if (currentInput) {
+                    currentAmount = parseInt(currentInput.replace(/,/g, ''));
+                }
+                
+                const totalAmount = currentAmount + clickedAmount;
+                // 천단위 콤마 적용
+                const formattedAmount = totalAmount.toLocaleString('ko-KR');
+                $('.amount-input-group .form-input').val(formattedAmount);
+            });
+
+            // 정정 버튼 클릭 이벤트
+            $('.quick-amount-buttons button:last-child').on('click', function() {
+                $('.amount-input-group .form-input').val(''); // 입력 필드 초기화
+            });
+
+            // 페이지네이션 데이터 (예시)
+            const inquiryData = {
+                1: [
+                    { num: 1, content: '계좌문의', date: '2024-11-12 15:32:11' },
+                    { num: 2, content: '계좌문의', date: '2024-11-12 14:25:33' },
+                    { num: 3, content: '계좌문의', date: '2024-11-12 13:15:42' },
+                    { num: 4, content: '계좌문의', date: '2024-11-12 12:05:18' },
+                    { num: 5, content: '계좌문의', date: '2024-11-12 11:47:55' }
+                ],
+                2: [
+                    { num: 6, content: '계좌문의', date: '2024-11-12 10:32:11' },
+                    { num: 7, content: '계좌문의', date: '2024-11-12 09:25:33' },
+                    { num: 8, content: '계좌문의', date: '2024-11-12 08:15:42' },
+                    { num: 9, content: '계좌문의', date: '2024-11-12 07:05:18' },
+                    { num: 10, content: '계좌문의', date: '2024-11-12 06:47:55' }
+                ],
+                3: [
+                    { num: 11, content: '계좌문의', date: '2024-11-11 15:32:11' },
+                    { num: 12, content: '계좌문의', date: '2024-11-11 14:25:33' },
+                    { num: 13, content: '계좌문의', date: '2024-11-11 13:15:42' },
+                    { num: 14, content: '계좌문의', date: '2024-11-11 12:05:18' },
+                    { num: 15, content: '계좌문의', date: '2024-11-11 11:47:55' }
+                ]
+            };
+
+            // 페이지 데이터 렌더링 함수
+            function renderInquiryList(pageNum) {
+                const pageData = inquiryData[pageNum];
+                let html = '';
+                
+                pageData.forEach(item => {
+                    html += `
+                        <div class="mypage-notice-row">
+                            <div class="mypage-notice-type">${item.num}</div>
+                            <div class="mypage-notice-title">${item.content}</div>
+                            <div class="mypage-notice-date">${item.date}</div>
+                        </div>
+                    `;
+                });
+
+                $('.mypage-notice-table').find('.mypage-notice-row').remove();
+                $('.mypage-notice-table').append(html);
+            }
+
+            // 페이지네이션 클릭 이벤트
+            $('.page-btn').on('click', function() {
+                const pageNum = $(this).text();
+                
+                // 활성화 상태 변경
+                $('.page-btn').removeClass('active');
+                $(this).addClass('active');
+                
+                // 페이지 데이터 렌더링
+                renderInquiryList(pageNum);
+            });
+
+            // 입금계좌문의 상태 변수
+            let isAccountInquired = false;
+
+            // 입금계좌문의 버튼 클릭 이벤트
+            $('.account-inquiry-btn').on('click', function() {
+                // 계좌문의 API 호출 시뮬레이션
+                const isSuccess = Math.random() > 0.5; // 임시로 50% 확률로 성공/실패
+
+                if (isSuccess) {
+                    isAccountInquired = true;
+                    showModal("입금계좌를 확인해주세요.");
+                    // 여기에 계좌정보를 표시하는 로직 추가
+                    $('.account-field input').val("신한은행 110-228-723783 (김민재)");
+                } else {
+                    isAccountInquired = false;
+                    showModal("입금계좌문의가 실패하였습니다. 고객센터에 문의해 주세요.");
+                }
+            });
+
+            // 입금신청 버튼 클릭 이벤트
+            $('.submit-btn').on('click', function(e) {
+                if (!isAccountInquired) {
+                    e.preventDefault();
+                    showModal("입금계좌신청을 먼저하여 계좌를 받고 입금 부탁드립니다.");
+                    return;
+                }
+
+                // 입금 금액 확인
+                const amountInput = $('.amount-input-group .form-input').val();
+                if (!amountInput) {
+                    showModal("입금 금액을 입력해주세요.");
+                    return;
+                }
+
+                // 입금신청 API 호출 시뮬레이션
+                const isSuccess = true; // 실제로는 API 호출 결과에 따라 설정
+
+                if (isSuccess) {
+                    showModal("입금신청이 되었습니다. 잠시만 기다려주세요.");
+                    // 입력 필드 초기화
+                    $('.amount-input-group .form-input').val('');
+                    // 계좌 정보 초기화
+                    $('.account-field input').val('');
+                    isAccountInquired = false;
+                } else {
+                    showModal("입금신청에 실패했습니다. 다시 시도해주세요.");
+                }
+            });
+
+            // 모달 표시 함수 수정
+            function showModal(message) {
+                const $modal = $('#alertModal');
+                $modal.find('.modal-text').text(message);
+                $modal.css('display', 'flex');
+
+                // 모달 내부 클릭은 전파 중단
+                $modal.find('.modal-content').on('click', function(e) {
+                    e.stopPropagation();
+                });
+
+                // 확인 버튼 클릭 이벤트
+                $modal.find('.modal-confirm').on('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    $modal.css('display', 'none');
+                });
+            }
+
+            // 확인 모달 표시 함수 수정
+            function showConfirmModal(message, onConfirm) {
+                const $modal = $('#confirmModal');
+                $modal.find('.modal-text').text(message);
+                $modal.css('display', 'flex');
+
+                // 모달 내부 클릭은 전파 중단
+                $modal.find('.modal-content').on('click', function(e) {
+                    e.stopPropagation();
+                });
+
+                // 확인 버튼 클릭 이벤트
+                $modal.find('.modal-confirm').on('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    onConfirm();
+                    $modal.css('display', 'none');
+                });
+
+                // 취소 버튼 클릭 이벤트
+                $modal.find('.modal-cancel').on('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    $modal.css('display', 'none');
+                });
+            }
+
+            // 모달 외부 클릭 이벤트 제거
+            $(window).off('click.modal');
+
+            // 새로고침 버튼 클릭 이벤트
+            $('.refresh-button').on('click', function() {
+                // 새로고침 애니메이션
+                $(this).find('svg').css({
+                    'transform': 'rotate(360deg)',
+                    'transition': 'transform 0.5s'
+                });
+                
+                // 애니메이션 리셋
+                setTimeout(() => {
+                    $(this).find('svg').css({
+                        'transform': 'rotate(0deg)',
+                        'transition': 'none'
+                    });
+                }, 500);
+
+                // 여기에 실제 잔액 갱신 로직 추가
+            });
+
+            // 전환 버튼 클릭 이벤트
+            $('.convert-button').on('click', function() {
+                const currentPoints = parseInt($('.point-amount').text().replace(/,/g, ''));
+                
+                if (currentPoints <= 0) {
+                    showModal("전환할 포인트가 없습니다.");
+                    return;
+                }
+
+                // 전환 확인 모달 표시
+                showConfirmModal("포인트 전환 하시겠습니까?", function() {
+                    // 현재 보유금액과 포인트 가져오기
+                    const currentBalance = parseInt($('.balance-item:first .point-amount').text().replace(/,/g, ''));
+                    
+                    // 보유금액 증가
+                    const newBalance = currentBalance + currentPoints;
+                    
+                    // 화면 업데이트
+                    $('.balance-item:first .point-amount').text(newBalance.toLocaleString('ko-KR'));
+                    $('.point-amount:last').text('0');
+                    
+                    // 모달 닫기
+                    $('#confirmModal').css('display', 'none');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

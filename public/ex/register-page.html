@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ex.css">
+    <title>register - NM Casino</title>
+</head>
+<body class="main-page">
+    <div class="register-container">
+        <div class="register-box">
+            <div class="register-logo">
+                <a href="logout.html">
+                    <img src="img/nm_logo.svg" alt="NM casino">
+                </a>
+            </div>
+            <div class="register-form">
+                <div class="input-group">
+                    <!-- 아이디 입력 -->
+                    <div class="input-wrapper required">
+                        <input type="text" placeholder="아이디(특수문자사용불가, 4~12자, 영문만)" class="register-input">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="#AFAFAF"/>
+                        </svg>
+                    </div>
+
+                    <!-- 닉네임 입력 -->
+                    <div class="input-wrapper required">
+                        <input type="text" placeholder="닉네임(특수문자사용불가, 2~8자, 영문/한글)" class="register-input">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" fill="#AFAFAF"/>
+                        </svg>
+                    </div>
+
+                    <!-- 비밀번호 입력 -->
+                    <div class="input-wrapper required">
+                        <input type="password" placeholder="비밀번호(6~18자)" class="register-input">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" fill="#AFAFAF"/>
+                        </svg>
+                    </div>
+
+                    <!-- 이메일 입력 -->
+                    <div class="input-wrapper">
+                        <input type="email" placeholder="이메일(비밀번호분실 시 사용)" class="register-input">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="#AFAFAF"/>
+                        </svg>
+                    </div>
+
+                    <!-- 추천인 입력 -->
+                    <div class="input-wrapper">
+                        <input type="text" placeholder="추천인" class="register-input">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="#AFAFAF"/>
+                        </svg>
+                    </div>
+
+                    <!-- 이름 입력 -->
+                    <div class="input-wrapper required">
+                        <input type="text" placeholder="이름(실명 미 기재시 환전불가능)" class="register-input">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#AFAFAF"/>
+                        </svg>
+                    </div>
+
+                    <!-- 생년월일 입력 -->
+                    <div class="input-wrapper required">
+                        <input type="text" placeholder="생년월일 및 뒷번호 앞자리" class="register-input">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" fill="#AFAFAF"/>
+                        </svg>
+                    </div>
+
+                    <!-- 휴대폰 인증 -->
+                    <div class="phone-verification required">
+                        <div class="input-wrapper">
+                            <input type="tel" placeholder="휴대폰번호(숫자만입력)" class="register-input">
+                            <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="#AFAFAF"/>
+                            </svg>
+                        </div>
+                        <button class="verification-btn">인증번호 받기</button>
+                    </div>
+
+                    <!-- 인증번호 입력 -->
+                    <div class="phone-verification">
+                        <div class="input-wrapper">
+                            <input type="text" placeholder="인증번호입력" class="register-input">
+                            <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z" fill="#AFAFAF"/>
+                            </svg>
+                        </div>
+                        <button class="verification-btn">확인</button>
+                    </div>
+
+                    <!-- 은행 정보 -->
+                    <div class="bank-info">
+                        <div class="input-wrapper required">
+                            <select class="register-input">
+                                <option value="">은행선택</option>
+                                <option value="kb">국민은행</option>
+                                <option value="shinhan">신한은행</option>
+                                <option value="woori">우리은행</option>
+                                <option value="hana">하나은행</option>
+                                <option value="nh">농협은행</option>
+                                <option value="ibk">기업은행</option>
+                                <option value="sc">SC제일은행</option>
+                                <option value="kakao">카카오뱅크</option>
+                                <option value="toss">토스뱅크</option>
+                            </select>
+                            <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-4.5-9L2 6v2h19V6l-9.5-5z" fill="#AFAFAF"/>
+                            </svg>
+                        </div>
+
+                        <!-- 예금주 입력 -->
+                        <div class="input-wrapper required">
+                            <input type="text" placeholder="예금주(이름과 일치하여야 함)" class="register-input">
+                            <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#AFAFAF"/>
+                            </svg>
+                        </div>
+
+                        <!-- 계좌번호 입력 -->
+                        <div class="input-wrapper required">
+                            <input type="text" placeholder="계좌번호(숫자만입력)" class="register-input">
+                            <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" fill="#AFAFAF"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 안내사항 -->
+                <div class="register-notice">
+                    <p>-필수 항목은 모두 입력해 주셔야 합니다.</p>
+                    <p>-정확한 정보를 입력하여야 가입이 가능합니다.</p>
+                    <p>-이름, 휴대폰, 예금주 이름이 동일하여야 가입이 가능합니다.</p>
+                </div>
+
+                <!-- 가입하기/로그인 버튼 -->
+                <div class="register-buttons">
+                    <button class="register-submit-btn">가입하기</button>
+                    <button class="register-login-btn">로그인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/ex/js/register.js"></script>
+</body>
+</html>

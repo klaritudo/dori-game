@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ex.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="ex.js"></script>
+    <title>NM Casino - 베팅내역</title>
+</head>
+<body class="main-page">
+    <!-- topbar와 nav 영역 -->
+    <div id="topbarnav-container"></div>
+
+    <!-- quick menu 영역 -->
+    <div id="quick-menu-container"></div>
+
+    <!-- 마이페이지 컨텐츠 -->
+    <div class="mypage-container">
+        <div class="mypage-title">마이페이지</div>
+
+        <!-- 상단 메뉴 탭 -->
+        <div class="mypage-menu-tab">
+            <a href="#" class="menu-tab">내정보</a>
+            <a href="#" class="menu-tab">입금</a>
+            <a href="#" class="menu-tab">출금</a>
+            <a href="#" class="menu-tab">입출금내역</a>
+            <a href="#" class="menu-tab active">베팅내역</a>
+            <a href="#" class="menu-tab support-tab">
+                고객센터
+                <span class="support-badge" style="display: inline-flex;">2</span>
+            </a>
+        </div>
+
+        <!-- 게임 카테고리 메뉴 -->
+        <div class="game-category">
+            <button class="category-btn active" data-category="slot">슬롯</button>
+            <button class="category-btn" data-category="casino">카지노</button>
+            <button class="category-btn" data-category="niuniu">니우니우</button>
+            <button class="category-btn" data-category="dori">도리짓고땡</button>
+            <button class="category-btn" data-category="mini">미니게임</button>
+            <button class="category-btn" data-category="sports">스포츠</button>
+        </div>
+
+        <!-- 검색 필터 영역 -->
+        <div class="betting-filters">
+            <!-- 날짜 필터 -->
+            <div class="date-filter">
+                <input type="datetime-local" class="date-input" id="startDate">
+                <span>~</span>
+                <input type="datetime-local" class="date-input" id="endDate">
+            </div>
+            
+            <!-- 검색 필터 -->
+            <div class="search-filters">
+                <select class="search-select">
+                    <option value="provider">게임사</option>
+                    <option value="game">게임명</option>
+                    <option value="bet">베팅금액</option>
+                    <option value="win">당첨금액</option>
+                    <option value="balance">발란스</option>
+                </select>
+                <input type="text" class="search-input" placeholder="검색어를 입력하세요">
+                <button class="search-btn">검색</button>
+            </div>
+        </div>
+
+        <!-- 베팅내역 테이블 (슬롯/카지노) -->
+        <div class="betting-table slot-casino-table">
+            <div class="table-header">
+                <div class="col-num">순번</div>
+                <div class="col-type">분류</div>
+                <div class="col-provider">게임사</div>
+                <div class="col-game">게임명</div>
+                <div class="col-bet">베팅</div>
+                <div class="col-win">당첨</div>
+                <div class="col-balance">발란스</div>
+                <div class="col-time">베팅/결과시간</div>
+                <div class="col-note">비고</div>
+            </div>
+            <div class="table-body">
+                <!-- 데이터 예시 -->
+                <div class="table-row">
+                    <div class="col-num">1</div>
+                    <div class="col-type">슬롯</div>
+                    <div class="col-provider">Evolution</div>
+                    <div class="col-game">Money Train 3</div>
+                    <div class="col-bet">100,000</div>
+                    <div class="col-win win">150,000</div>
+                    <div class="col-balance">1,050,000</div>
+                    <div class="col-time">2024-11-12 15:21:45</div>
+                    <div class="col-note">-</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <div class="pagination">
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">5</button>
+            <button class="page-btn next">></button>
+        </div>
+    </div>
+
+    <!-- footer 영역 -->
+    <div id="footer-container"></div>
+
+    <script>
+    $(document).ready(function() {
+        // 공통 로드
+        $("#topbarnav-container").load("topbarnav.html");
+        $("#quick-menu-container").load("ex.html #quick-menu");
+        $("#footer-container").load("footer.html");
+
+        // 페이지당 표시할 항목 수
+        const itemsPerPage = 10;
+        let currentPage = 1;
+        let currentCategory = 'slot'; // 현재 선택된 카테고리
+
+        // 날짜 초기화 함수 수정 (현재 시간부터 4시간 전)
+        function initializeDates() {
+            const endDate = new Date();
+            const startDate = new Date(endDate);
+            startDate.setHours(endDate.getHours() - 4); // 4시간 전으로 설정
+
+            $('#endDate').val(formatDateTime(endDate));
+            $('#startDate').val(formatDateTime(startDate));
+        }
+
+        // 카테고리 버튼 클릭 이벤트
+        $('.category-btn').on('click', function() {
+            $('.category-btn').removeClass('active');
+            $(this).addClass('active');
+            currentCategory = $(this).data('category');
+            currentPage = 1; // 페이지 초기화
+            
+            // 카테고리에 따라 필터링된 데이터 표시
+            const filteredData = bettingData.filter(item => {
+                if (currentCategory === 'slot') return item.type === '슬롯';
+                if (currentCategory === 'casino') return item.type === '카지노';
+                return true; // 다른 카테고리의 경우
+            });
+            
+            renderBettingTable(filteredData);
+        });
+
+        // 테이블 데이터 렌더링 함수 수정
+        function renderBettingTable(data) {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageData = data.slice(startIndex, endIndex);
+
+            const tableBody = $('.table-body');
+            tableBody.empty();
+
+            pageData.forEach((item, index) => {
+                const isWin = parseInt(item.win.replace(/,/g, '')) > 0;
+                const row = `
+                    <div class="table-row">
+                        <div class="col-num">${startIndex + index + 1}</div>
+                        <div class="col-type">${item.type}</div>
+                        <div class="col-provider">${item.provider}</div>
+                        <div class="col-game">${item.game}</div>
+                        <div class="col-bet">${item.bet}</div>
+                        <div class="col-win ${isWin ? 'win' : 'lose'}">${item.win}</div>
+                        <div class="col-balance">${item.balance}</div>
+                        <div class="col-time">${item.time}</div>
+                        <div class="col-note">${item.note}</div>
+                    </div>
+                `;
+                tableBody.append(row);
+            });
+
+            updatePagination(data.length);
+        }
+
+        // 날짜+시간 포맷 함수
+        function formatDateTime(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            
+            return `${year}-${month}-${day}T${hours}:${minutes}`;
+        }
+
+        // 검색 버튼 클릭 이벤트 수정
+        $('.search-btn').on('click', function() {
+            const searchType = $('.search-select').val();
+            const searchText = $('.search-input').val().toLowerCase();
+            const startDate = new Date($('#startDate').val());
+            const endDate = new Date($('#endDate').val());
+
+            // 현재 카테고리와 검색 조건에 맞는 데이터 필터링
+            const filteredData = bettingData.filter(item => {
+                // 1. 카테고리 필터
+                const matchesCategory = currentCategory === 'slot' ? item.type === '슬롯' : 
+                                      currentCategory === 'casino' ? item.type === '카지노' : true;
+
+                // 2. 날짜 필터
+                const itemDate = new Date(item.time);
+                const matchesDate = itemDate >= startDate && itemDate <= endDate;
+
+                // 3. 검색어 필터
+                let matchesSearch = true;
+                if (searchText) {
+                    switch(searchType) {
+                        case 'provider':
+                            // 게임사 검색 - 영문명과 한글명 모두 검색
+                            matchesSearch = item.provider.toLowerCase().includes(searchText) || 
+                                          item.providerKor.toLowerCase().includes(searchText);
+                            break;
+                        case 'game':
+                            // 게임명 검색 - 영문명과 한글명 모두 검색
+                            matchesSearch = item.game.toLowerCase().includes(searchText) || 
+                                          item.gameKor.toLowerCase().includes(searchText);
+                            break;
+                        case 'bet':
+                            const betAmount = item.bet.replace(/,/g, '');
+                            const searchAmount = searchText.replace(/,/g, '');
+                            matchesSearch = betAmount.includes(searchAmount);
+                            break;
+                        case 'win':
+                            const winAmount = item.win.replace(/,/g, '');
+                            const searchWinAmount = searchText.replace(/,/g, '');
+                            matchesSearch = winAmount.includes(searchWinAmount);
+                            break;
+                        case 'balance':
+                            const balanceAmount = item.balance.replace(/,/g, '');
+                            const searchBalanceAmount = searchText.replace(/,/g, '');
+                            matchesSearch = balanceAmount.includes(searchBalanceAmount);
+                            break;
+                    }
+                }
+
+                return matchesCategory && matchesDate && matchesSearch;
+            });
+
+            currentPage = 1;
+            renderBettingTable(filteredData);
+        });
+
+        // 검색 입력 필드에서 Enter 키 이벤트 추가
+        $('.search-input').on('keypress', function(e) {
+            if (e.which === 13) { // Enter 키
+                $('.search-btn').click();
+            }
+        });
+
+        // 금액 입력 시 자동 콤마 포맷팅
+        $('.search-input').on('input', function() {
+            const searchType = $('.search-select').val();
+            if (['bet', 'win', 'balance'].includes(searchType)) {
+                let value = $(this).val().replace(/[^\d]/g, '');
+                if (value) {
+                    $(this).val(parseInt(value).toLocaleString('ko-KR'));
+                }
+            }
+        });
+
+        // 검색 타입 변경 시 입력 필드 초기화
+        $('.search-select').on('change', function() {
+            $('.search-input').val('');
+        });
+
+        // 초기화
+        initializeDates();
+        // 초기 데이터 필터링 (슬롯 데이터만)
+        const initialData = bettingData.filter(item => item.type === '슬롯');
+        renderBettingTable(initialData);
+
+        // 페이지네이션 업데이트 함수 수정
+        function updatePagination(totalItems) {
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            const $pagination = $('.pagination');
+            $pagination.empty();
+
+            // 이전 페이지 버튼
+            if (currentPage > 1) {
+                $pagination.append('<button class="page-btn prev">&lt;</button>');
+            }
+
+            // 페이지 번호 버튼
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, startPage + 4);
+
+            // 시작 페이지 조정
+            if (endPage - startPage < 4) {
+                startPage = Math.max(1, endPage - 4);
+            }
+
+            // 첫 페이지로 이동 버튼
+            if (startPage > 1) {
+                $pagination.append(`<button class="page-btn">1</button>`);
+                if (startPage > 2) {
+                    $pagination.append('<span class="page-dots">...</span>');
+                }
+            }
+
+            // 페이지 번호 버튼
+            for (let i = startPage; i <= endPage; i++) {
+                $pagination.append(`
+                    <button class="page-btn ${i === currentPage ? 'active' : ''}">${i}</button>
+                `);
+            }
+
+            // 마지막 페이지로 이동 버튼
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    $pagination.append('<span class="page-dots">...</span>');
+                }
+                $pagination.append(`<button class="page-btn">${totalPages}</button>`);
+            }
+
+            // 다음 페이지 버튼
+            if (currentPage < totalPages) {
+                $pagination.append('<button class="page-btn next">&gt;</button>');
+            }
+        }
+
+        // 페이지네이션 클릭 이벤트 수정
+        $(document).on('click', '.page-btn', function() {
+            const totalPages = Math.ceil(bettingData.length / itemsPerPage);
+            
+            if ($(this).hasClass('prev')) {
+                if (currentPage > 1) {
+                    currentPage--;
+                }
+            } else if ($(this).hasClass('next')) {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                }
+            } else {
+                currentPage = parseInt($(this).text());
+            }
+
+            // 현재 카테고리에 맞는 데이터 필터링
+            const filteredData = bettingData.filter(item => {
+                if (currentCategory === 'slot') return item.type === '슬롯';
+                if (currentCategory === 'casino') return item.type === '카지노';
+                return true;
+            });
+
+            renderBettingTable(filteredData);
+        });
+    });
+    </script>
+
+    <!-- 베팅내역 데이터 -->
+    <script>
+    const bettingData = [
+        // 슬롯 베팅내역 15개
+        { type: '슬롯', provider: 'Evolution', providerKor: '에볼루션', game: 'Money Train 3', gameKor: '머니트레인 3', bet: '100,000', win: '150,000', balance: '1,050,000', time: '2024-11-12 15:21:45', note: '-' },
+        { type: '슬롯', provider: 'Pragmatic', providerKor: '프라그마틱', game: 'Sweet Bonanza', gameKor: '스위트 보난자', bet: '50,000', win: '25,000', balance: '1,025,000', time: '2024-11-12 15:15:30', note: '-' },
+        { type: '슬롯', provider: 'NetEnt', providerKor: '넷엔트', game: 'Starburst', gameKor: '스타버스트', bet: '75,000', win: '0', balance: '950,000', time: '2024-11-12 15:05:18', note: '-' },
+        { type: '슬롯', provider: 'Pragmatic', providerKor: '프라그마틱', game: 'Gates of Olympus', gameKor: '올리포스의 문', bet: '80,000', win: '160,000', balance: '1,030,000', time: '2024-11-12 14:55:33', note: '-' },
+        { type: '슬롯', provider: 'Microgaming', providerKor: '마이크로게임', game: 'Immortal Romance', gameKor: '영원의 로맨스', bet: '60,000', win: '120,000', balance: '1,090,000', time: '2024-11-12 14:45:12', note: '-' },
+        { type: '슬롯', provider: 'Evolution', providerKor: '에볼루션', game: 'Money Train 2', gameKor: '머니트레인 2', bet: '90,000', win: '180,000', balance: '1,180,000', time: '2024-11-12 14:40:05', note: '-' },
+        { type: '슬롯', provider: 'Pragmatic', providerKor: '프라그마틱', game: 'Wild West Gold', gameKor: '와일드 웨스트 골드', bet: '70,000', win: '140,000', balance: '1,250,000', time: '2024-11-12 14:30:42', note: '-' },
+        { type: '슬롯', provider: 'NetEnt', providerKor: '넷엔트', game: 'Gonzo\'s Quest', gameKor: '곤조의 모험', bet: '85,000', win: '0', balance: '1,165,000', time: '2024-11-12 14:20:25', note: '-' },
+        { type: '슬롯', provider: 'Pragmatic', providerKor: '프라그마틱', game: 'Fruit Party', gameKor: '과일 파티', bet: '95,000', win: '190,000', balance: '1,260,000', time: '2024-11-12 14:10:10', note: '-' },
+        { type: '슬롯', provider: 'Evolution', providerKor: '에볼루션', game: 'Book of Dead', gameKor: '데드 오브 데이', bet: '110,000', win: '220,000', balance: '1,370,000', time: '2024-11-12 14:00:15', note: '-' },
+        { type: '슬롯', provider: 'Pragmatic', providerKor: '프라그마틱', game: 'Great Rhino', gameKor: '그레이트 리노', bet: '65,000', win: '0', balance: '1,305,000', time: '2024-11-12 13:50:20', note: '-' },
+        { type: '슬롯', provider: 'NetEnt', providerKor: '넷엔트', game: 'Dead or Alive', gameKor: '데드 오어 알라이브', bet: '120,000', win: '240,000', balance: '1,425,000', time: '2024-11-12 13:40:30', note: '-' },
+        { type: '슬롯', provider: 'Microgaming', providerKor: '마이크로게임', game: 'Break da Bank', gameKor: '브레이크 데 방크', bet: '55,000', win: '110,000', balance: '1,480,000', time: '2024-11-12 13:30:40', note: '-' },
+        { type: '슬롯', provider: 'Evolution', providerKor: '에볼루션', game: 'San Quentin', gameKor: '산 퀸틴', bet: '130,000', win: '0', balance: '1,350,000', time: '2024-11-12 13:20:50', note: '-' },
+        { type: '슬롯', provider: 'Pragmatic', providerKor: '프라그마틱', game: 'Wolf Gold', gameKor: '울프 골드', bet: '45,000', win: '90,000', balance: '1,395,000', time: '2024-11-12 13:10:55', note: '-' },
+
+        // 카지노 베팅내역 15개
+        { type: '카지노', provider: 'Evolution', providerKor: '에볼루션', game: 'Baccarat', gameKor: '바카라', bet: '200,000', win: '400,000', balance: '1,795,000', time: '2024-11-12 15:10:22', note: '-' },
+        { type: '카지노', provider: 'Evolution', providerKor: '에볼루션', game: 'Blackjack', gameKor: '블랙잭', bet: '150,000', win: '300,000', balance: '1,945,000', time: '2024-11-12 15:00:45', note: '-' },
+        { type: '카지노', provider: 'Evolution', providerKor: '에볼루션', game: 'Roulette', gameKor: '룰렛', bet: '100,000', win: '0', balance: '1,845,000', time: '2024-11-12 14:50:21', note: '-' },
+        { type: '카지노', provider: 'Evolution', providerKor: '에볼루션', game: 'Dragon Tiger', gameKor: '드래곤 타이거', bet: '120,000', win: '0', balance: '1,725,000', time: '2024-11-12 14:35:55', note: '-' },
+        { type: '카지노', provider: 'Evolution', providerKor: '에볼루션', game: 'Crazy Time', gameKor: '크라이시 타임', bet: '200,000', win: '400,000', balance: '1,925,000', time: '2024-11-12 14:25:33', note: '-' },
+        { type: '카지노', provider: 'Evolution', providerKor: '에볼루션', game: 'Lightning Roulette', gameKor: '라이트닝 룰렛', bet: '150,000', win: '300,000', balance: '2,075,000', time: '2024-11-12 14:15:18', note: '-' },
+        { type: '카지노', provider: 'Evolution', providerKor: '에볼루션', game: 'Speed Baccarat', gameKor: '스피드 바카라', bet: '180,000', win: '360,000', balance: '2,255,000', time: '2024-11-12 14:05:25', note: '-' },
+        { type: '카지노', provider: 'Evolution', providerKor: '에볼루션', game: 'Football Studio', gameKor: '풋볼 스튜디오', bet: '90,000', win: '0', balance: '2,165,000', time: '2024-11-12 13:55:30', note: '-' },
+        { type: '카지노', provider: 'Evolution', providerKor: '에볼루션', game: 'Mega Ball', gameKor: '메가 볼', bet: '160,000', win: '320,000', balance: '2,325,000', time: '2024-11-12 13:45:35', note: '-' },
+        { type: '카지노', provider: 'Evolution', providerKor: '에볼루션', game: 'Dream Catcher', gameKor: '드림 캐쳐', bet: '140,000', win: '280,000', balance: '2,465,000', time: '2024-11-12 13:35:40', note: '-' },
+        { type: '카지노', provider: 'Evolution', providerKor: '에볼루션', game: 'Monopoly Live', gameKor: '몬포리 라이브', bet: '170,000', win: '0', balance: '2,295,000', time: '2024-11-12 13:25:45', note: '-' },
+        { type: '카지노', provider: 'Evolution', providerKor: '에볼루션', game: 'Side Bet City', gameKor: '사이드 벳 시티', bet: '110,000', win: '220,000', balance: '2,405,000', time: '2024-11-12 13:15:50', note: '-' },
+        { type: '카지노', provider: 'Evolution', providerKor: '에볼루션', game: 'Super Sic Bo', gameKor: '슈퍼 식스보', bet: '130,000', win: '260,000', balance: '2,535,000', time: '2024-11-12 13:05:55', note: '-' },
+        { type: '카지노', provider: 'Evolution', providerKor: '에볼루션', game: 'Fan Tan', gameKor: '판 탄', bet: '190,000', win: '0', balance: '2,345,000', time: '2024-11-12 12:55:00', note: '-' },
+        { type: '카지노', provider: 'Evolution', providerKor: '에볼루션', game: 'Golden Wealth Baccarat', gameKor: '골든 위스 바카라', bet: '220,000', win: '440,000', balance: '2,565,000', time: '2024-11-12 12:45:05', note: '-' }
+    ];
+    </script>
+</body>
+</html>

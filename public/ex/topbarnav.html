@@ -1,0 +1,94 @@
+<!-- top-bar 영역 -->
+<div class="top-bar">
+    <div class="balance-info">
+        <div class="balance-item">
+            <span class="balance-label">보유금액</span>
+            <div class="point-container">
+                <span class="balance-value">100,000,000원</span>
+                <button class="refresh-button">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.5 2.5V0L4.375 3.125L7.5 6.25V3.75C9.8125 3.75 11.25 6.25 10 8.125L11.875 10C14.375 6.875 12.5 2.5 7.5 2.5Z" fill="#EEAD4F"/>
+                        <path d="M7.5 11.25C5.1875 11.25 3.75 8.75 5 6.875L3.125 5C0.625 8.125 2.5 12.5 7.5 12.5V15L10.625 11.875L7.5 8.75V11.25Z" fill="#EEAD4F"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="balance-item">
+            <span class="balance-label">포인트</span>
+            <div class="point-container">
+                <span class="balance-value">1,000,000</span>
+                <span class="point-unit">P</span>
+                <button class="refresh-button">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.5 2.5V0L4.375 3.125L7.5 6.25V3.75C9.8125 3.75 11.25 6.25 10 8.125L11.875 10C14.375 6.875 12.5 2.5 7.5 2.5Z" fill="#EEAD4F"/>
+                        <path d="M7.5 11.25C5.1875 11.25 3.75 8.75 5 6.875L3.125 5C0.625 8.125 2.5 12.5 7.5 12.5V15L10.625 11.875L7.5 8.75V11.25Z" fill="#EEAD4F"/>
+                    </svg>
+                </button>
+                <button class="convert-button">전환</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 모달 추가 -->
+<div class="modal" id="alertModal">
+    <div class="modal-content">
+        <div class="modal-logo">
+            <img src="img/nm_logo.svg">
+        </div>
+        <div class="modal-text"></div>
+        <button class="modal-confirm">확인</button>
+    </div>
+</div>
+
+<!-- 확인 모달 추가 -->
+<div class="modal" id="confirmModal">
+    <div class="modal-content">
+        <div class="modal-logo">
+            <img src="img/nm_logo.svg">
+        </div>
+        <div class="modal-text"></div>
+        <div class="modal-buttons">
+            <button class="modal-confirm">확인</button>
+            <button class="modal-cancel">취소</button>
+        </div>
+    </div>
+</div>
+
+<!-- header 영역 -->
+<header>
+    <nav>
+        <div class="logo">
+            <img src="img/nm_logo.svg" alt="NM casino">
+        </div>
+        <div class="menu-container">
+            <ul class="menu-items">
+                <li><a href="/slots">슬롯</a></li>
+                <li><a href="/casino">카지노</a></li>
+                <li><a href="/deposit">입금</a></li>
+                <li><a href="/withdraw">출금</a></li>
+                <li class="mypage-wrapper">
+                    <a href="/mypage">마이페이지</a>
+                    <div class="message-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="#EEAD4F"/>
+                        </svg>
+                        <div class="badge">5</div>
+                    </div>
+                </li>
+                <li class="mobile-only logout-menu-item">
+                    <a href="/logout">로그아웃</a>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <button class="mobile-menu-btn">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                </svg>
+            </button>
+            <button class="logout-btn desktop-only">로그아웃</button>
+        </div>
+    </nav>
+</header>
+

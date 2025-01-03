@@ -1,0 +1,4917 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle, #0C423E 0%, #001814 100%);
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 로그인/로그아웃 페이지 제외한 나머지 페이지용 스티키 컨테이너 */
+        .main-page #topbarnav-container,
+        .mypage-container #topbarnav-container,
+        .game-container #topbarnav-container,
+        .deposit-container #topbarnav-container,
+        .withdraw-container #topbarnav-container,
+        .history-container #topbarnav-container,
+        .betting-container #topbarnav-container,
+        .support-container #topbarnav-container,
+        .dori-game-page #topbarnav-container {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* 로그인/로그아웃 페이지용 기존 스타일 유지 */
+        .login-page .top-bar,
+        .logout-page .top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .login-page header,
+        .logout-page header {
+            position: sticky;
+            top: 50px;
+            z-index: 999;
+        }
+
+        .top-bar {
+            width: 100%;
+            height: 50px;
+            background-color: #0C423E;
+            color: white;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            padding: 0px 10px;
+        }
+
+        .balance-info {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            margin-right: 25px;
+        }
+
+        .balance-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .balance-label {
+            margin-right: 5px;
+            color: #ffffff;
+        }
+
+        .balance-value {
+            font-weight: bold;
+            color: #EEAD4F;
+        }
+
+        header {
+            width: 100%;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        nav {
+            position: sticky;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            justify-content: space-between;
+        }
+
+        .logo {
+            height: 50px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+            filter: brightness(1.2);
+        }
+
+        .menu-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu-items {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+            height: 100%;
+        }
+
+        .menu-items a {
+            text-decoration: none;
+            color: #ffffff;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .menu-items a:hover {
+            color: #C97822;
+        }
+
+        .logout-btn {
+            background-color: rgba(220, 53, 69, 0.8);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin-right: 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            flex-shrink: 0;
+        }
+
+        .logout-btn:hover {
+            background-color: #FE4040;
+        }
+
+        /* Updated Slider styles */
+        .slider-container {
+            width: 50%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+/* Add responsive media queries */
+
+
+        .slider {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+            margin-bottom: 0px;
+        }
+
+        .slide {
+            width: 25%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 0px;
+        }
+
+        .slide-image {
+            width: 50%;
+            height: 100%;
+        }
+
+        .slide-image img {
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            object-fit: cover;
+        }
+
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .slider-nav-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgb(255, 255, 255);
+            cursor: pointer;
+            border: none;
+        }
+
+        .slider-nav-btn.active {
+            background-color: white;
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            min-width: 200px;
+            border-radius: 4px;
+            padding: 8px 0;
+            z-index: 998;
+        }
+
+        .dropdown-menu li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 12px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #4dfff3;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Divider style */
+        .divider {
+            width: 100%;
+            height: 5px;
+            background: radial-gradient(circle, #FFC564 0%, #C97822 100%);
+            margin: 0;
+            padding: 0;
+            display: block;
+        }
+
+        .refresh-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            margin-left: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            transform: rotate(180deg);
+        }
+
+        .refresh-btn svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .dropdown > a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        /* Media query for mobile menu */
+        @media screen and (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .menu-container {
+                display: none;
+                position: fixed;
+                top: 120px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.95);
+                padding: 20px 0;
+                z-index: 1000;
+            }
+
+            .menu-container.active {
+                display: block;
+            }
+
+            .menu-items {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .menu-items li {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .menu-items li:last-child {
+                border-bottom: none;
+            }
+
+            .menu-items li a {
+                padding: 15px 20px;
+                display: block;
+            }
+
+            .mobile-only .logout-btn {
+                width: 100%;
+                padding: 15px 20px;
+                text-align: left;
+                background: none;
+                border-radius: 0;
+                font-weight: normal;
+                color: #FE4040;
+            }
+
+            .mobile-only .logout-btn:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        /* Mobile menu styles */
+        @media screen and (max-width: 768px) {
+            nav {
+                justify-content: space-between;  /* 네비게이션 아이템 분산 정렬 */
+            }
+
+            .logo {
+                flex: 1;  /* 로고가 남은 공간을 차지하도록 */
+            }
+
+            .mobile-controls {
+                display: flex;
+                align-items: center;
+                gap: 10px;  /* 버튼 사이 간격 */
+                margin-left: auto;  /* 오른쪽 정렬을 위해 추가 */
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                padding: 10px;
+                cursor: pointer;
+            }
+
+            .mobile-menu-btn svg {
+                width: 24px;
+                height: 24px;
+                fill: white;
+            }
+
+            .logout-btn {
+                font-size: 14px;
+                padding: 6px 12px;
+                margin-left: 0;  /* 모바일에서 마진 제거 */
+            }
+        }
+
+        .mobile-only {
+            display: none;
+        }
+
+        .desktop-only {
+            display: block;
+        }
+
+        /* 퀵메뉴  */
+        .quick-menu {
+            position: fixed;
+            top: 200px;
+            right: 150px;
+            width: 80px;
+            background-color: #0C423E;
+            border: 2px solid white;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+            transition: all 0.3s ease-in-out;
+            max-height: 500px;
+            opacity: 1;
+            overflow: hidden;
+        }
+
+
+        .quick-menu.hidden {
+            max-height: 40px;
+            opacity: 1;
+        }
+
+        .quick-menu.hidden .quick-menu-items {
+            display: none;
+        }
+
+        /* 모바일에서 퀵메뉴 숨김 */
+        @media screen and (max-width: 768px) {
+            .quick-menu {
+                display: none;
+            }
+        }
+        
+        /* 반응형 대응 */
+        @media screen and (max-width: 1024px) {
+            .quick-menu {
+                right: 20px; /* 오른쪽 여백 줄임 */
+                top: 250px; /* 슬라이드 역 아래로 치 조정 */
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            .quick-menu {
+                top: 120px;  /* 모바일에서 상단 위치 변경 */
+                right: 10px;
+                width: 60px;
+            }
+
+            .quick-menu-item {
+                font-size: 10px; /* 모바일에서 텍스트 크기 축소 */
+            }
+
+            .quick-menu-item img {
+                width: 18px; /* 모바일에서 아이콘 크기 축소 */
+                height: 18px;
+            }
+        }
+
+        .quick-menu-items {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .quick-menu.hidden .quick-menu-items {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .quick-menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            font-size: 12px;
+            width: 100%;
+            padding: 5px 0;
+        }
+
+        .quick-menu-item img {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 5px;
+        }
+
+        .quick-menu-item:hover {
+            opacity: 0.5;
+        }
+
+        /* 모바일 드롭다운 메뉴 */
+        .mobile-dropdown {
+            position: relative;
+        }
+
+        .mobile-dropdown-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .mobile-dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            z-index: 100;
+        }
+
+        .mobile-dropdown-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .mobile-dropdown-content li {
+            padding: 12px 15px;
+            border-top: 1px solid #eee;  /* 구분선 추가 */
+        }
+
+        .mobile-dropdown-content .logout-item {
+            padding: 12px 15px;
+            border-top: 1px solid #eee;  /* 구분선 추가 */
+        }
+
+        .mobile-dropdown-content .logout-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .mobile-dropdown-content .logout-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* 모바일 버전 */
+        @media screen and (max-width: 768px) {
+            .mobile-dropdown-content .logout-item {
+                padding: 12px 15px;
+                border-top: 1px solid #eee;  /* 구분선 추가 */
+            }
+
+            .mobile-dropdown-content .logout-btn {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                color: #333;
+                text-decoration: none;
+            }
+
+            .mobile-dropdown-content .logout-btn img {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        /* 모바일 메뉴 스타일 수정 */
+        @media screen and (max-width: 768px) {
+            .logout-btn.desktop-only {
+                display: none;  /* 데스크톱 로그아웃 버튼 숨김 */
+            }
+            
+            .logout-menu-item {
+                display: none;  /* 기본적으로 숨김 */
+            }
+            
+            .mobile-only.logout-menu-item {
+                display: block;  /* 모바일에서만 표 */
+                border-top: 1px solid rgba(255, 255, 255, 0.1);  /* 구분선 추가 */
+                margin-top: 10px;  /* 상단 여백 추가 */
+            }
+            
+            .logout-menu-item a {
+                color: #FE4040 !important;  /* 로그아웃 텍스트 색상 */
+                display: block;
+                padding: 15px 20px;  /* 패딩 추가 */
+                text-align: left;  /* 텍스트 왼쪽 정렬 */
+            }
+        }
+
+        /* 검색 영�� 스타일 */
+        .search-container {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 350px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            width: 100%;
+            height: 100%;
+            padding: 0 40px 0 12px;
+            border: 2px solid #C97822;
+            border-radius: 25px;
+            font-size: 13px;
+            color: #AFAFAF;
+            outline: none;
+            text-align: center;
+        }
+
+        .search-input::placeholder {
+            color: #AFAFAF;
+            text-align: center;
+        }
+
+        .search-button {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
+        }
+
+        .search-button:hover {
+            fill: #E88B2C;
+        }
+
+        .search-button svg path {
+            fill: #EEAD4F;
+            border: 2px #EEAD4F;
+        }
+
+        /* 모바일 반응형 스타일 */
+        @media screen and (max-width: 768px) {
+            .search-container {
+                padding: 15px;
+            }
+        }
+        
+
+        /* 전환 버튼 스타일 */
+        .convert-button {
+            background: #EEAD4F;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            padding: 6px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .convert-button:hover {
+            background: #F5B85A;
+        }
+
+        /* 쪽지 아이콘 래퍼 스타일 */
+        .message-icon-wrapper {
+            position: relative;
+            display: inline-flex;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .message-icon-wrapper svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* 배지 스타일 */
+        .badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: #FE4040;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* 포인트 컨테이너 레이아웃 조정 */
+        .point-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* 호버 효과 */
+        .message-icon-wrapper:hover svg path {
+            fill: #F5B85A;
+        }
+
+        /* 리프레쉬 버튼 스타일 수정 */
+        .refresh-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            margin-left: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .refresh-button:hover {
+            transform: rotate(180deg);
+        }
+
+        .refresh-button svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .refresh-button svg path {
+            fill: #EEAD4F;
+        }
+
+        /* 포인트 컨테이너 레이아웃 */
+        .point-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .point-amount {
+            font-size: 14px;
+            color: #EEAD4F;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 2px; /* 숫자와 단위 사이 간격 */
+        }
+
+        .point-unit {
+            font-size: 14px;
+            color: #EEAD4F;
+            font-weight: 500;
+        }
+
+        /* 마이페이지 래퍼 타일 */
+        .mypage-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 메바일 메뉴 타일 수정 */
+        @media screen and (max-width: 768px) {
+            .logout-btn.desktop-only {
+                display: none;  /* 데스크톱 로그아웃 버튼 숨김 */
+            }
+            
+            .logout-menu-item {
+                display: none;  /* 기본적으로 숨김 */
+            }
+            
+            .mobile-only.logout-menu-item {
+                display: block;  /* 모바일에서만 표 */
+                border-top: 1px solid rgba(255, 255, 255, 0.1);  /* 구분선 추가 */
+                margin-top: 10px;  /* 상단 여백 추가 */
+            }
+            
+            .logout-menu-item a {
+                color: #FE4040 !important;  /* 로그아웃 텍스트 색상 */
+                display: block;
+                padding: 15px 20px;  /* 패딩 추가 */
+                text-align: left;  /* 텍스트 왼쪽 정렬 */
+            }
+        }
+
+        /* 검색 영역 스타일 */
+        .search-container {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-box {
+            position: relative;
+            width: 350px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            width: 100%;
+            height: 100%;
+            padding: 0 40px 0 12px;
+            border: 2px solid #C97822;
+            border-radius: 25px;
+            font-size: 13px;
+            color: #AFAFAF;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: #AFAFAF;
+            text-align: center;
+        }
+
+        .search-button {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;  /* 배경 제거 */
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 27px;  /* 원형 버튼 설정 */
+            height: 27px; /* 원형 버튼 설정 */
+            border-radius: 50%; /* 원형으로 만들 */
+        }
+
+        .search-button:hover {
+            fill: #E88B2C; /* 호버 효과 */
+        }
+
+        .search-button svg path {
+            fill: #EEAD4F;
+            border: 2px #EEAD4F;
+        }
+
+        /* 전환 버튼 스타일 */
+        .convert-button {
+            background: #EEAD4F;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            padding: 6px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .convert-button:hover {
+            background: #F5B85A;
+        }
+
+        /* 쪽지 아이콘 래퍼 스타일 */
+        .message-icon-wrapper {
+            position: relative;
+            display: inline-flex;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .message-icon-wrapper svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* 배지 스타일 */
+        .badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: #FE4040;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* 포인트 컨테이너 레이아웃 */
+        .point-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* 호버 효과 */
+        .message-icon-wrapper:hover svg path {
+            fill: #F5B85A;
+        }
+
+        /* 리프레쉬 버튼 스타일 수정 */
+        .refresh-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            margin-left: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .refresh-button:hover {
+            transform: rotate(180deg);
+        }
+
+        .refresh-button svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .refresh-button svg path {
+            fill: #EEAD4F;
+        }
+
+        /* 포인트 컨테이너 레이아웃 */
+        .point-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .point-amount {
+            font-size: 14px;
+            color: #EEAD4F;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 2px; /* 숫자와 단위 사이 간격 */
+        }
+
+        .point-unit {
+            font-size: 14px;
+            color: #EEAD4F;
+            font-weight: 500;
+        }
+
+        /* 마이페이지 래퍼 타일 */
+        .mypage-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 메시지 아이콘 */
+        .message-icon-wrapper {
+            position: relative;
+            display: inline-flex;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .message-icon-wrapper svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* 검색 영역 컨테이너 */
+        .search-container {
+            display: flex;
+            gap: 10px; /* 검색창 사이 간격 */
+            padding: 20px;
+        }
+
+        /* 게임 검색 */
+        .search-box {
+            position: relative;
+            width: 350px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 게임사 검색 */
+        .search-box provider-search {
+            position: relative;
+            width: 350px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 섹션 컨테이너 */
+        .section-container {
+            position: relative;
+            width: 100%;
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 20px;
+            margin-bottom: 40px;
+        }
+        
+
+        /* 섹션 헤더 */
+        .section-header {
+            text-align: center;
+            width: 85%;
+            max-width: 1500px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0px 10px 80px
+        }
+
+        /* 섹션 타이틀 래퍼 */
+        .title-wrapper {
+            position: relative;
+        }
+
+        /* 더보기 래퍼 */
+        .more-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        /* 더보기 텍스트 */
+        .more-text {
+            font-size: 14px;
+            color: white;
+        }
+        
+        /* 드슬라이드 */
+
+        .card-slider:active {
+            cursor: grabbing;
+        }
+
+        /* 카드 기본 스타일 */
+        .card {
+            position: relative;
+            flex: 0 0 240px;  /* 카드 크기 고정 */
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1; /* 기본 z-index */
+        }
+
+        /* 카드 슬라이더 확장 시 스타일 */
+        .card-slider-outer.expanded .card-slider,
+        .popular-section .card-slider-outer.expanded .card-slider {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            transform: none !important;
+        }
+
+        /* 카드 크기 유지를 위한 스타일 */
+        .card-slider-outer.expanded .card,
+        .popular-section .card-slider-outer.expanded .card {
+            flex: 0 0 240px;  /* 카드 크기 고정 유지 */
+            width: 240px;     /* 명시적 비 설정 */
+            height: 300px;    /* 높이 고정 */
+            margin: 0 auto;   /* 중앙 정렬 */
+        }
+
+        /* 더보기 아이콘 관련 스타일 */
+        .more-icon {
+            transition: transform 0.3s ease;
+        }
+
+        /* 호버 효과 */
+        .more-wrapper:hover .more-icon {
+            opacity: 0.8;
+        }
+
+        .more-wrapper.expanded .more-icon .vertical {
+            opacity: 0;
+        }
+
+        /* 인기게임 섹 더보기 스타일 */
+        .popular-section .more-wrapper:hover .more-icon {
+            transform: rotate(180deg);
+        }
+
+        .popular-section .more-wrapper.expanded .more-icon .vertical {
+            opacity: 0;
+        }
+
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background: rgba(201, 120, 34, 0.8);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .slider-arrow.prev {
+            left: 0;
+        }
+
+        .slider-arrow.next {
+            right: 0;
+        }
+
+        .slider-arrow svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .slider-arrow:hover {
+            background: rgba(201, 120, 34, 1);
+        }
+
+        /* 카드 구조 수정 */
+        .card {
+            position: relative;
+        }
+
+        .info-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1;
+        }
+
+        .info-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+        }
+
+        .info-icon path {
+            fill: white;
+        }
+
+        .tooltip {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            width: 200px;
+            z-index: 2;
+        }
+
+        .info-icon:hover .tooltip {
+            display: block;
+        }
+
+        .game-info {
+            padding: 10px;
+        }
+
+        .game-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .provider {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .provider-logo {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .provider-name {
+            font-size: 14px;
+            color: #999;
+        }
+
+
+
+.title-wrapper {
+    position: relative;
+}
+
+.section-title {
+    font-size: 20px;
+    color: white;
+    margin: 20px 0px 0px 0px;
+}
+
+.title-underline {
+    position: absolute;
+    height: 2px;
+    background: rgb(238, 173, 79);
+    width: 200px;
+    bottom: -5px;
+}
+
+.more-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 20px 0px 0px 0px;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.more-text {
+    font-size: 14px;
+    color: white;
+}
+
+.more-wrapper svg {
+    transition: transform 0.3s ease;
+}
+
+/* 메인 이미지 스타일 수정 */
+.main-image {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    justify-content: center;
+    z-index: 3;
+}
+
+/* 서브 이��지 ���타��� 수정 */
+.sub-image {
+    position: relative;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    object-fit: contain;
+    z-index: 3;
+}
+
+
+/* 게임사 검색 박스 스타일 */
+.search-box.provider-search {
+    width: 200px;
+}
+
+/* �����드 슬라���더 �������� */
+.card-slider-outer {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+.card-slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.card-slider {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    gap: 10px;
+    transition: transform 0.3s ease;
+    padding: 0px;
+}
+
+.card {
+    position: relative;
+    flex: 0 0 250px;
+    height: 300px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    user-select: none;
+}
+
+.game-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 그라데이션 오버레이 */
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.8) 100%);
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 10; /* 호버 시 다른 요소 위에 표시 */
+}
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background: rgba(201, 120, 34, 0.8);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.slider-arrow.prev {
+    left: 0px;
+}
+
+.slider-arrow.next {
+    right: 0px;
+}
+
+.slider-arrow svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+}
+
+.slider-arrow:hover {
+    background: rgba(201, 120, 34, 1);
+}
+
+/* 모바일 버전에 게임사 ���색창 숨 */
+@media screen and (max-width: 768px) {
+    .provider-search {
+        display: none;
+    }
+
+    /* 카드 슬라이더 화살표 버튼 숨김 */
+    .slider-arrow {
+        display: none;
+    }
+
+    /* 화살표가 없으므로 패딩 제거 */
+    .card-slider-outer {
+        padding: 0;
+    }
+}
+
+/* 확장된 뷰 스타일 */
+.card-slider-outer.expanded {
+    padding: 0;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.card-slider-outer.expanded .card-slider {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    transform: none !important;
+    padding: 20px;
+    justify-content: center;
+}
+
+.card-slider-outer.expanded .slider-arrow {
+    display: none;
+}
+
+/* 모바일 버전 그리드 */
+@media screen and (max-width: 768px) {
+    .card-slider-outer.expanded .card-slider {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .card-slider-outer.expanded .card-slider {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 카드 내부 스타일 */
+.card {
+    position: relative;
+    flex: 0 0 220px;
+    height: 300px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    user-select: none;
+}
+
+.game-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 그라데이션 오버레이 */
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.8) 100%);
+    pointer-events: none;
+}
+
+/* 게임 정보 스타일 */
+.game-info {
+    position: relative;
+    z-index: 1;
+}
+
+/* 정보 아이콘 스타일 */
+.info-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+/* 툴팁 스타일 */
+.tooltip {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 1.4;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+}
+
+.info-icon:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* 게임 정보 타일 */
+.game-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+}
+
+/* 게임사 정보 스타일 */
+.provider {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;  /* 게임명과의 간격 */
+}
+
+.provider-logo {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: white;
+    padding: 2px;
+}
+
+.provider-name {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* 게임 스타일 */
+.game-name {
+    font-size: 25px;
+    font-weight: 800;
+    color: white;
+}
+
+/* 카드 링크 스타일 */
+.card-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: white;
+    z-index: 1;
+}
+
+/* 정보 아이콘은 링크보다 위 표시되록 */
+.info-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+/* 호버 효과 수정 */
+.card:hover .card-link {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 클릭 효과 추가 */
+.card:active .card-link {
+    transform: translateY(-5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 더보기 아이콘 스타일 */
+.more-icon {
+    transition: transform 0.3s ease;
+}
+
+/* 호버 효과 */
+.more-wrapper:hover .more-icon {
+    opacity: 0.8;
+}
+
+/* 클릭 시 + 에서 - 로 변경 */
+.more-wrapper.expanded .more-icon {
+    transform: rotate(0deg);
+}
+
+/*퀵메뉴 토글 버튼 스타일*/
+.quick-menu-toggle-bottom {
+    width: 100%;
+    height: 35px;
+    background: #ffffff;
+    color: #0C423E;
+    border: 1px solid #0C423E;
+    border-radius: 8px 8px 8px 8px;
+    cursor: pointer;
+    position: relative;
+    z-index: 101;
+    transition: all 1s ease-in-out;
+}
+
+.quick-menu.hidden .quick-menu-toggle-bottom {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 더보기 아이콘 기본 스타일 */
+.more-icon {
+    transition: transform 0.3s ease;
+}
+
+/* 호버 효과 - 180도 회전 */
+.more-wrapper:hover .more-icon {
+    transform: rotate(180deg);
+}
+
+/* expanded 상태에서 + 숨기고 - 보이기 */
+.more-wrapper.expanded .plus {
+    display: none;
+}
+
+.more-wrapper.expanded .minus {
+    display: block !important;  /* !important를 추가하여 인라인 스타일 override */
+}
+
+/* JACKPOT TOP10 타이틀 스타일 */
+.jackpot-title {
+    font-size: 20px;
+    font-style: italic;
+    color: white;
+    margin: 20px 0px 0px 0px;
+}
+
+/* JACKPOT 션 헤더 스타일 조정 */
+.jackpot-section .section-header {
+    text-align: center;
+    width: 75%;
+    max-width: 1300px;
+    display: flex;
+    justify-content: flex-start;  /* 왼쪽 정렬 */
+    align-items: center;
+    margin: 15px 0px 25px 80px;
+}
+
+.jackpot-section .title-underline {
+    width: 200px;  /* JACKPOT TOP10 텍스트에 맞게 조정 */
+}
+
+/* 잭팟 리스트 컨테이너 */
+.jackpot-list {
+    width: 85%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 잭팟 아이템 스타일 */
+.jackpot-item {
+    flex: 0 0 420px;
+    width: 420px;
+    height: 150px;
+    background: rgba(12, 66, 62, 0.5);
+    border: 2px solid #C97822;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 부드러운 전환 효과 */
+    position: relative;
+    z-index: 1;
+    transform-origin: center center; /* 중앙 기준 확대 */
+}
+
+.jackpot-item:hover {
+    transform: scale(1.50);
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* 게임 썸네일 영역 */
+.game-thumbnail {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 15px;
+}
+
+.game-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 잭팟 정보 영역 */
+.jackpot-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;  /* 오른쪽 정렬 */
+    text-align: right;      /* 텍스트 오른쪽 ��렬 */
+    height: 100%;
+    padding: 5px 0;
+}
+
+/* ���첨자 ID 스타일 */
+.winner-id {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;  /* 오른쪽 정렬 */
+}
+
+.crown-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.id-text {
+    color: white;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+/* 당첨금액 스타일 */
+.prize-amount {
+    color: #EEAD4F;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+/* 게임 제목 스타일 */
+.game-title {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* 당첨 일시 스타일 */
+.win-date {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 17px;
+}
+
+/* 잭팟 슬라이더 컨테이너 */
+.jackpot-slider-outer {
+    position: relative;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 10px 0; /* 상하 여백��� 추가 */
+    overflow: hidden; /* 좌우 overflow는 hidden 유지 */
+}
+
+/* 화살표 버튼 숨김 */
+.jackpot-slider-outer .slider-arrow {
+    display: none;
+}
+
+.jackpot-slider {
+    display: flex;
+    gap: 10px;
+    transition: transform 0.3s ease;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.jackpot-slider:active {
+    cursor: grabbing;
+}
+
+/* 잭팟 아이템 스타일 수정 */
+.jackpot-item {
+    flex: 0 0 400px;
+    width: 400px;
+    height: 150px;
+    background: rgba(12, 66, 62, 0.5);
+    border: 2px solid #C97822;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    padding: 0px 15px 20px 10px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 부드운 전환 효과 */
+    position: relative;
+    z-index: 1;
+    transform-origin: center center; /* 중앙 기준 확대 */
+}
+
+.jackpot-item:hover {
+    transform: scale(1.15);
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* 반응형 조정 */
+@media screen and (max-width: 768px) {
+    .jackpot-slider-outer {
+        padding: 0 20px;
+    }
+    
+    .jackpot-slider-outer .slider-arrow {
+        display: none;
+    }
+}
+
+/* 이벤트 섹션 헤더 스타일 */
+.event-section .section-header {
+    text-align: center;
+    width: 85%;
+    max-width: 1500px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 15px 0px 25px 80px;
+}
+
+.event-section .title-wrapper {
+    position: relative;
+}
+
+.event-section .section-title {
+    font-size: 20px;
+    color: white;
+    margin: 20px 0px 0px 0px;
+}
+
+.event-section .title-underline {
+    position: absolute;
+    height: 2px;
+    background: rgb(238, 173, 79);
+    width: 200px; /* 이벤트 텍스트 길에 맞게 조정 */
+    bottom: -5px;
+}
+
+/* 모바일 반응형 스타일 */
+@media screen and (max-width: 768px) {
+    .event-section .section-header {
+        width: 100%;
+        margin: 15px 0px 25px 20px;
+    }
+}
+
+/* 이벤트 컨텐츠 컨테이너 */
+.event-content {
+    width: 90%;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 메인 이벤트 스타일 */
+.event-main {
+    width: 100%;
+    height: 180px;
+    border-radius: 14px;
+    border: 2px solid #C97822;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 서브 이벤트 컨테이너 */
+.event-sub-container {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+/* 서브 이벤트 아이템 */
+.event-sub {
+    flex: 1;
+    height: 150px;
+    border-radius: 14px;
+    border: 2px solid #C97822;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 카드 슬라이더 컨테이너 */
+.card-slider-container {
+    position: relative;
+    padding: 20px 0; /* 상하 여백 추가 */
+}
+
+/* 카드 슬라이더 */
+.card-slider {
+    position: relative;
+    padding: 10px 0; /* 상하 여백 추가 */
+}
+
+/* 카드 기본 스타일 */
+.card {
+    position: relative;
+    flex: 0 0 240px;  /* 카드 크기 고정 */
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 부드러운 전환 효과 */
+    position: relative;
+    z-index: 1; /* 기본 z-index */
+}
+
+/* 카드 호버 효과 */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 10; /* 호버 시 다른 요소 위에 표시 */
+}
+
+/* 인기게임 슬라이더에도 동일하게 ��용 */
+.popular-slider-container {
+    position: relative;
+    padding: 20px 0;
+}
+
+.popular-slider {
+    position: relative;
+    padding: 10px 0;
+}
+
+/* 게임사 로고 슬라이더 스타일 */
+.vendor-logo-section {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px 0;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0);
+}
+
+.vendor-logo-slider {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    overflow: hidden;
+}
+
+.vendor-logo-track {
+    display: flex;
+    position: absolute;
+    animation: scroll 30s linear infinite;
+    gap: 50px;
+}
+
+.vendor-logo {
+    height: 30px;
+    object-fit: contain;
+    filter: grayscale(0%) brightness(70%);
+    transition: filter 0.3s ease;
+}
+
+.vendor-logo:hover {
+    filter: grayscale(0%) brightness(100%);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* 모바일 반응형 */
+@media screen and (max-width: 768px) {
+    .vendor-logo {
+        height: 30px;
+    }
+    
+    .vendor-logo-slider {
+        height: 50px;
+    }
+}
+
+    /* 푸터 스타일 */
+    .footer {
+        width: 100%;
+        background: rgba(12, 66, 62, 0.3);
+        padding: 40px 0;
+        margin-top: 50px;
+    }
+
+    .footer-content {
+        max-width: 1300px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+
+    /* 푸터 섹션 공통 스타일 */
+    .footer h3 {
+        color: white;
+        font-size: 20px;
+        margin-bottom: 20px;
+        text-transform: capitalize;
+    }
+
+    /* ���쪽 섹션 - 사이트맵 */
+    .sitemap ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .sitemap li {
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    /* 중앙 섹션 - 고객센터 */
+    .service-info {
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 20px;
+    }
+
+    .service-info p {
+        margin-bottom: 5px;
+        font-size: 16px;
+    }
+
+    .telegram-button {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #EEAD4F;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .telegram-button img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .cs-button {
+        background: #EEAD4F;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s ease;
+    }
+
+    .cs-button:hover {
+        background: #C97822;
+    }
+
+    /* 오른쪽 섹션 - 언어 설정 */
+    .language-selector {
+        display: flex;
+        gap: 10px;
+    }
+
+    .language-btn {
+        background: transparent;
+        border: 1px solid #EEAD4F;
+        color: #EEAD4F;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+
+    .language-btn.active {
+        background: #EEAD4F;
+        color: white;
+    }
+
+    .language-btn:hover:not(.active) {
+        background: rgba(238, 173, 79, 0.1);
+    }
+
+    /* 푸터 하단 */
+    .footer-bottom {
+        max-width: 1300px;
+        margin: 40px auto 0;
+        padding: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .copyright {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 14px;
+    }
+
+    .copyright p {
+        margin: 5px 0;
+    }
+
+    .footer-logo img {
+        height: 40px;
+    }
+
+    /* 모바일 반응형 */
+    @media screen and (max-width: 768px) {
+        .footer-content {
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+            gap: 20px;
+        }
+    }
+
+    /* nav-right 내 auth-buttons 스타일 */
+    .nav-right .auth-buttons {
+        display: flex;
+        gap: 10px;
+        margin-right: 20px;
+    }
+
+    .nav-right .login-btn, 
+    .nav-right .register-btn {
+        background: transparent;
+        border: 1px solid #EEAD4F;
+        color: #EEAD4F;
+        padding: 8px 30px;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-right .login-btn:hover, 
+    .nav-right .register-btn:hover {
+        background: #EEAD4F;
+        color: white;
+    }
+
+    .nav-right .register-btn {
+        padding: 8px 16px;
+        background: rgba(220, 53, 69, 0.8);
+        border: 1px solid rgba(220, 53, 69, 0.8);
+        color: white;
+    }
+
+    .nav-right .register-btn:hover {
+        background: #FE4040;
+        border-color: #FE4040;
+    }
+
+    /* 모바일 반응형 */
+    @media screen and (max-width: 768px) {
+        .nav-right .auth-buttons {
+            display: none; /* 모바일�����서 버튼 숨김 */
+        }
+    }
+
+    /* 슬라이더 내 로그인/회원가입 ���튼 스타일 */
+    .slider-container {
+        position: relative;
+    }
+
+    .slider-auth-buttons {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        gap: 20px;
+        z-index: 10;
+    }
+
+    .slider-login-btn,
+    .slider-register-btn {
+        padding: 15px 60px;
+        font-size: 24px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    }
+
+    .slider-login-btn {
+        background: #00000032;
+        border: 2px solid #EEAD4F;
+        color: #EEAD4F;
+    }
+
+    .slider-login-btn:hover {
+        background: #EEAD4F;
+        color: white;
+    }
+
+    .slider-register-btn {
+        background: rgba(220, 53, 69, 0.8);
+        border: 2px solid rgba(220, 53, 69, 0.8);
+        color: white;
+    }
+
+    .slider-register-btn:hover {
+        background: #FE4040;
+        border-color: #FE4040;
+    }
+
+    /* 모바일 반응형 */
+    @media screen and (max-width: 768px) {
+        .slider-auth-buttons {
+            flex-direction: column;
+            gap: 10px;
+            transform: translate(-50%, -50%) scale(0.7); /* 전체적으로 70% 크기로 축소 */
+        }
+
+        .slider-login-btn,
+        .slider-register-btn {
+            padding: 10px 40px;
+            font-size: 18px;
+            min-width: max-content; /* 크기만큼 최소 너비 설정 */
+        }
+    }
+
+    /* 더 작은 화면에서 추가 축소 */
+    @media screen and (max-width: 480px) {
+        .slider-auth-buttons {
+            transform: translate(-50%, -50%) scale(0.6); /* 더 작은 화면에서는 60% 크기로 축소 */
+        }
+    }
+
+    /* 슬라이더 내 로그인/회원가입 버튼 스타일 */
+    .slider-container {
+        position: relative;
+    }
+
+    .slider-auth-buttons {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        gap: 20px;
+        z-index: 10;
+    }
+
+    /* 반응형 스케일링 관련 코드 */
+    @media screen and (max-width: 1200px) {
+        .slider-auth-buttons {
+            transform: translate(-50%, -50%) scale(0.9);
+        }
+    }
+
+    @media screen and (max-width: 992px) {
+        .slider-auth-buttons {
+            transform: translate(-50%, -50%) scale(0.8);
+        }
+    }
+
+    @media screen and (max-width: 893px) {
+        .slider-auth-buttons {
+            flex-direction: column;
+            gap: 10px;
+            transform: translate(-50%, -50%) scale(0.7);
+        }
+
+        .slider-login-btn,
+        .slider-register-btn {
+            padding: 10px 40px;
+            font-size: 18px;
+            min-width: max-content; /* 내용 크기만큼 최소 너비 설정 */
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        .slider-auth-buttons {
+            transform: translate(-50%, -50%) scale(0.6);
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .slider-auth-buttons {
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+    }
+
+    /* 네비게이션 반형 스타일 수정 */
+    @media screen and (max-width: 1024px) { /* 1024px로 분기점 상향 조정 */
+        .menu-container {
+            display: none; /* 기본 메뉴 숨김 */
+        }
+
+        .mobile-menu-btn {
+            display: block; /* 모바일 메뉴 버튼 표시 */
+        }
+
+        .nav-right .auth-buttons {
+            display: none; /* 모바일에서 버튼 숨김 */
+        }
+
+        .mobile-only {
+            display: block;
+        }
+
+        .desktop-only {
+            display: none;
+        }
+    }
+
+    /* 모바일 메뉴 스타일 */
+    @media screen and (min-width: 1025px) {
+        .mobile-menu-btn {
+            display: none; /* PC에서 모바일 메뉴 버튼 숨김 */
+        }
+
+        .menu-container {
+            display: flex; /* PC에서 기본 메뉴 표시 */
+        }
+    }
+
+    /* 로그인 페이지 스타일 */
+    .login-page {
+        min-height: 100vh;
+        background: radial-gradient(circle, #0C423E 0%, #001814 100%);
+        margin: 0;
+        padding: 0;
+    }
+
+    .login-container {
+        display: flex;
+        justify-content: space-between; /* 양쪽 정렬로 변경 */
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+        max-width: 1920px; /* 최대 너비 설정 */
+        margin: 0 auto;
+        position: relative; /* 추가 */
+    }
+
+    .login-box {
+        width: 100%;
+        max-width: 400px;
+        padding: 40px;
+        position: absolute; /* 절대 위치로 변경 */
+        left: 25%; /* 왼쪽 50% 영역의 중앙에 위치 */
+        top: 50%;
+        transform: translate(-50%, -50%); /* 중앙 정렬 */
+        z-index: 2; /* 이미지 위에 표시 */
+    }
+
+    .login-logo {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .login-logo img {
+        width: 320px;
+        cursor: pointer;
+        transition: width 0.3s ease; /* 부드러운 크기 변경 효과 */
+    }
+
+    /* 반응형 로고 크기 조정 */
+    @media screen and (max-width: 1000px) {
+        .login-logo img {
+            width: 320px;
+        }
+    }
+
+    @media screen and (max-width: 992px) {
+        .login-logo img {
+            width: 320px;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        .login-logo img {
+            width: 280px;
+        }
+    }
+
+    @media screen and (max-width: 340px) {
+        .login-logo img {
+            width: 220px;
+        }
+    }
+
+    @media screen and (max-width: 320px) {
+        .login-logo img {
+            width: 200px;
+        }
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* 입력 필드 래퍼 스타일 */
+    .input-wrapper {
+        position: relative;
+        width: 100%;
+    }
+
+    /* 입력 필드 아이콘 스타일 */
+    .input-icon {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none; /* 아이콘이 ��력을 ���해하지 않도록 */
+    }
+
+    /* 입력 필드 스타일 수정 */
+    .login-input {
+        width: 100%;
+        padding: 15px;
+        padding-right: 45px; /* ���이콘을 위한 여백 */
+        border: 1px solid #EEAD4F;
+        border-radius: 5px;
+        background: transparent;
+        color: white;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+
+    .login-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* 입력 필드 포커스 효과 */
+    .login-input:focus {
+        outline: none;
+        border-color: #EEAD4F;
+        box-shadow: 0 0 0 2px rgba(238, 173, 79, 0.2);
+    }
+
+    /* 입력 필드 포커스 시 아이콘 색상 변경 */
+    .login-input:focus + .input-icon path {
+        fill: #EEAD4F;
+    }
+
+    .login-submit-btn {
+        padding: 15px;
+        background: #EEAD4F;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .login-submit-btn:hover {
+        background: #C97822;
+    }
+
+    .login-links {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .login-links a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s ease;
+    }
+
+    .login-links a:hover {
+        color: #EEAD4F;
+    }
+
+    .login-image {
+        width: 50%; /* 전체 너비의 50% */
+        height: 100vh; /* 화면 높이만큼 */
+        position: absolute;
+        right: 0;
+        top: 0;
+        overflow: hidden;
+    }
+
+    .login-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 이미지 비율 유지하며 채우기 */
+        border-radius: 0; /* 이미지 모서리 각도 제거 */
+    }
+
+    /* 모바일 반응형 */
+    @media screen and (max-width: 768px) {
+        .login-container {
+            justify-content: center;
+        }
+
+        .login-box {
+            position: relative; /* 모바일에서는 일반 위치로 변경 */
+            left: auto;
+            top: auto;
+            transform: none;
+            margin: 0;
+        }
+
+        .login-image {
+            display: none;
+        }
+    }
+
+    /* 로그인/회원가입 버튼 컨테이너 */
+    .login-buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    /* 로그인 버튼 스타일 수정 */
+    .login-submit-btn {
+        flex: 1;
+        padding: 15px;
+        background: #EEAD4F;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .login-submit-btn:hover {
+        background: #C97822;
+    }
+
+    /* 회원가입 버튼 스타일 */
+    .login-register-btn {
+        flex: 1;
+        padding: 15px;
+        background: rgba(220, 53, 69, 0.8);
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .login-register-btn:hover {
+        background: #FE4040;
+    }
+
+    /* 모바일 반응형 */
+    @media screen and (max-width: 480px) {
+        .login-buttons {
+            flex-direction: column;
+        }
+    }
+
+    /* 회원가입 페이지 스타일 */
+    .register-page {
+        background-color: #0C1F1E;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .register-container {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+    }
+
+    .register-box {
+        width: 100%;
+        max-width: 600px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        padding: 40px;
+    }
+
+    .register-logo {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .register-logo img {
+        height: 50px;
+        width: auto;
+    }
+
+    .register-form {
+        width: 100%;
+    }
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .input-wrapper {
+        position: relative;
+        width: 100%;
+    }
+
+    .input-wrapper.required::before {
+        content: "*";
+        position: absolute;
+        left: -23px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #FE4040;
+        font-size: 27px;
+    }
+
+    .register-input {
+        width: 100%;
+        height: 68px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 0 60px 0 23px;
+        color: #fff;
+        font-size: 21px;
+    }
+
+    .register-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .input-icon {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        right: 23px;
+    }
+
+    /* 휴대폰 인증 영역 */
+    .phone-verification {
+        display: flex;
+        gap: 15px;
+    }
+
+    .phone-verification .input-wrapper {
+        flex: 1;
+    }
+
+    .verification-btn {
+        min-width: 180px;
+        height: 68px;
+        background: #EEAD4F;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 21px;
+        cursor: pointer;
+    }
+
+    .verification-btn:hover {
+        background: #C97822;
+    }
+
+    /* 은행 정보 영역 */
+    .bank-info {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    select.register-input {
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url('data:image/svg+xml;utf8,<svg fill="%23ffffff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 60px center; /* 화살표 위치 조정 */
+        padding-right: 90px; /* 텍스트가 화살표와 겹치지 않도록 패딩 조정 */
+    }
+
+    /* 은행 선택 필드의 아이콘 위치 조정 */
+    .bank-info .input-wrapper .input-icon {
+        right: 23px; /* 아이콘 위치 조정 */
+        z-index: 1; /* 아이콘이 화살표 위에 표시되도록 */
+    }
+
+    /* 안내사항 */
+    .register-notice {
+        margin: 30px 0;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 20px;
+        line-height: 1.6;
+    }
+
+    .register-notice p {
+        margin: 5px 0;
+    }
+
+    /* 가입하기 버튼 */
+    .register-submit-btn {
+        width: 100%;
+        height: 68px;
+        background: #EEAD4F;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 24px;
+        font-weight: 500;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+
+    .register-submit-btn:hover {
+        background: #C97822;
+    }
+
+    /* 모바일 반응형 */
+    @media screen and (max-width: 768px) {
+        .register-container {
+            padding: 20px;
+        }
+
+        .register-box {
+            padding: 20px;
+        }
+
+        .input-wrapper.required::before {
+            left: -15px;
+        }
+
+        .verification-btn {
+            min-width: 150px;
+            font-size: 20px;
+        }
+    }
+
+        /* 가입하기/로그인 버튼 컨테이너 */
+        .register-buttons {
+            display: flex;
+            margin-top: 15px;
+            gap: 15px;
+        }
+
+        .register-submit-btn,
+        .register-login-btn {
+            width: 100%;
+        }
+    
+
+    /* 가입하기/로그인 버튼 컨테이너 */
+    .register-buttons {
+        display: flex;
+        margin-top: 15px;
+        gap: 15px;
+    }
+
+    .register-submit-btn,
+    .register-login-btn {
+        flex: 1;
+        height: 68px;
+        background: #EEAD4F;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 24px;
+        font-weight: 500;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .register-submit-btn:hover {
+        background: #C97822;
+    }
+
+    .register-login-btn {
+        background: rgba(220, 53, 69, 0.8);
+    }
+
+    .register-login-btn:hover {
+        background: #FE4040;
+    }
+
+    /* 모바일 반응형 */
+    @media screen and (max-width: 768px) {
+        .register-buttons {
+            flex-direction: column;
+        }
+
+        .register-submit-btn,
+        .register-login-btn {
+            width: 100%;
+        }
+    }
+
+    /* 마이페이지 스타일 */
+    .mypage-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        color: #fff;
+        background: none;
+    }
+
+    .mypage-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 20px;
+    }
+
+    /* 마이페이지 메뉴 탭 */
+    .mypage-menu-tab {
+        display: flex;
+        gap: 2px;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 2px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        overflow-x: auto;  /* 가로 스크롤 추가 */
+        white-space: nowrap;  /* 줄바꿈 방지 */
+    }
+
+    .mypage-menu-tab::-webkit-scrollbar {
+        display: none;  /* 스크롤바 숨김 */
+    }
+
+    .mypage-menu-tab .menu-tab {
+        flex: 1;
+        padding: 15px;
+        text-align: center;
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background 0.3s;
+    }
+
+    .mypage-menu-tab .menu-tab.active {
+        background: #EEAD4F;
+    }
+
+    /* 마이페이지 보유금/트 정보 */
+    .mypage-balance-info {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .mypage-balance-row {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 10px;
+    }
+
+    .mypage-balance-label {
+        width: 80px;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .mypage-balance-value {
+        flex: 1;
+        color: #fff;
+    }
+
+    .mypage-refresh-btn,
+    .mypage-convert-btn {
+        padding: 8px 15px;
+        background: #EEAD4F;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    /* 마이페이지 회원정보 폼 */
+    .mypage-form {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .mypage-input-group {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mypage-input-icon {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mypage-input-icon img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .mypage-input-label {
+        width: 120px;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .mypage-input-field {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        border-radius: 5px;
+        padding: 12px;
+        color: #fff;
+        font-size: 14px;
+    }
+
+    .mypage-input-group.disabled .mypage-input-field {
+        background: rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .mypage-edit-btn {
+        padding: 10px 20px;
+        background: #EEAD4F;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        min-width: 80px;
+        font-size: 14px;
+    }
+
+    .mypage-edit-btn:hover {
+        background: #C97822;
+    }
+
+    /* 마이페이지 안내 컨테이너 */
+    .mypage-guide-boxes {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .mypage-guide-box {
+        flex: 1;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    .mypage-guide-top {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .mypage-guide-icon {
+        display: flex;
+        align-items: center;
+    }
+
+    .mypage-guide-icon svg {
+        width: 28.8px;  /* 24px * 1.2 */
+        height: 28.8px;  /* 24px * 1.2 */
+    }
+
+    .mypage-guide-title {
+        font-size: 21.6px;  /* 18px * 1.2 */
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .mypage-guide-text {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* 마이페이지 공지사항 테이블 */
+    .mypage-notice-table {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .mypage-notice-header {
+        display: flex;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mypage-notice-row {
+        display: flex;
+        padding: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mypage-notice-type {
+        width: 120px;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .mypage-notice-title {
+        flex: 1;
+        color: #fff;
+    }
+
+    .mypage-notice-date {
+        width: 100px;
+        color: rgba(255, 255, 255, 0.5);
+        text-align: right;
+    }
+
+    .mypage-notice-row.important .mypage-notice-type {
+        color: #FE4040;
+    }
+
+    /* 마이페이지 모바일 반응형 */
+    @media screen and (max-width: 768px) {
+        .mypage-menu-tab {
+            flex-wrap: nowrap;  /* 줄바꿈 방지 */
+        }
+        
+        .mypage-guide-boxes {
+            flex-direction: column;
+        }
+        
+        .mypage-input-group {
+            flex-direction: row;  /* 가로 정렬 유지 */
+            align-items: center;  /* 세로 중앙 정렬 */
+            flex-wrap: nowrap;  /* 줄바꿈 방지 */
+            gap: 10px;
+            width: 100%;
+        }
+        
+        .mypage-input-label {
+            width: auto;  /* 고정 너비 제거 */
+            white-space: nowrap;  /* 라벨 텍스트 줄바꿈 방지 */
+        }
+        
+        .mypage-input-field {
+            flex: 1;  /* 남은 공간 모두 사용 */
+            min-width: 0;  /* 너무 좁아지는 것 방지 */
+        }
+        
+        .mypage-edit-btn {
+            width: auto;  /* 고정 너비 제거 */
+            white-space: nowrap;  /* 버튼 텍스트 줄바꿈 방지 */
+        }
+
+        .mypage-form-row {
+            flex-direction: column;
+            gap: 8px;
+        }
+    }
+
+    .mypage-form {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .mypage-form-row {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .mypage-form-column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;  /* 간격을 8px로 조정 */
+    }
+
+    .mypage-form-bank {
+        width: 100%;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .mypage-form-bank select.mypage-input-field {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 12px;
+        font-size: 14px;
+        cursor: pointer;
+        appearance: none;
+        background-image: url('img/dropdown-arrow.svg');
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        padding-right: 30px;
+    }
+
+    .mypage-form-bank select.mypage-input-field option {
+        background: #1A1A1A;
+        color: #fff;
+    }
+
+    /* 모바일 대응 */
+    @media screen and (max-width: 768px) {
+        .mypage-form-bank {
+            padding-top: 15px;
+            gap: 10px;
+        }
+
+        .mypage-form-row {
+            flex-direction: column;  /* 모바일에서 1열로 변경 */
+            gap: 8px;  /* 칼럼 간 간격도 8px로 통일 */
+        }
+    }
+
+    /* 고객센터 탭 스타일 수정 */
+    .support-tab {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 6px;  /* 텍스트와 벳지 사이 간격 */
+    }
+
+    .support-badge {
+        position: static;  /* absolute에서 static으로 변경 */
+        background: #FE4040;
+        color: white;
+        font-size: 12px;
+        min-width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 6px;
+    }
+
+    /* 모바일 대응 */
+    @media screen and (max-width: 768px) {
+        .support-badge {
+            min-width: 18px;
+            height: 18px;
+            font-size: 11px;
+        }
+    }
+
+    /* 입금 페이지 스타일 */
+    .deposit-notice {
+        background: #1A1A1A;
+        border: 1px solid #EEAD4F;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .notice-title {
+        color: #EEAD4F;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .notice-content {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .notice-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .notice-item .label {
+        color: #999;
+        width: 80px;
+    }
+
+    .notice-item .value {
+        color: white;
+        font-weight: bold;
+    }
+
+    .copy-btn {
+        background: #EEAD4F;
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    /* 출금 신청 폼 */
+    .deposit-form {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid #EEAD4F;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .form-title {
+        color: #EEAD4F;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .form-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-row {
+        display: flex;
+        align-items: flex-start; /* 상��� 정���로 �����경 */
+        gap: 20px;
+    }
+
+    .form-label {
+        color: #999;
+        width: 100px;
+        padding-top: 10px; /* 입력 필드와 같은 높이로 정렬 */
+    }
+
+    .form-input {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid #666;
+        border-radius: 5px;
+        padding: 10px;
+        color: white;
+        width: 600px;
+    }
+
+    .amount-input-group {
+        flex: 1;
+    }
+
+    .quick-amount-buttons {
+        display: grid;
+        width: 600px;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .quick-amount-buttons button {
+        background: #333;
+        border: 1px solid #666;
+        border-radius: 5px;
+        padding: 8px;
+        color: white;
+        cursor: pointer;
+    }
+
+    .quick-amount-buttons button:last-child {
+        background: #FE4040;
+        border-color: #FE4040;
+    }
+
+    .submit-btn {
+        background: #EEAD4F;
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    /* 입금 유의사항 */
+    .deposit-warning {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid #FE4040;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .warning-title {
+        color: #FE4040;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .warning-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        color: #999;
+    }
+
+    .warning-list li {
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+    }
+
+    .warning-list li:before {
+        content: "•";
+        color: #FE4040;
+        position: absolute;
+        left: 0;
+    }
+
+    /* 반응형 스타일 */
+    @media screen and (max-width: 768px) {
+        .form-row {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .form-input {
+            width: 100%;
+        }
+
+        .quick-amount-buttons {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    /* 입금 신청 폼 수정된 스타일 */
+    .account-check-area {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .account-inquiry-btn {
+        background: #FE4040;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .account-field {
+        flex: 1;
+    }
+
+    .amount-submit-group {
+        width: 600px;
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .amount-submit-group .form-input {
+        flex: 1;
+    }
+
+    .amount-submit-group .submit-btn {
+        width: auto;
+        margin: 0;
+        padding: 0 30px;
+    }
+
+    .form-input[readonly] {
+        background: #222;
+        color: #999;
+    }
+
+    .quick-amount-buttons button {
+        background: #0C423E;
+        border: 1px solid #EEAD4F;
+        color: #EEAD4F;
+        font-weight: bold;
+    }
+
+    .quick-amount-buttons button:last-child {
+        background: #FE4040;
+        border-color: #FE4040;
+        color: white;
+    }
+
+    /* 페이지네이션 스타일 */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        margin-top: 20px;
+    }
+
+    .page-btn {
+        min-width: 32px;
+        height: 32px;
+        padding: 0 8px;
+        border: 1px solid #EEAD4F;
+        background: #0C423E;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+    }
+
+    .page-btn:hover {
+        background: #C97822;
+    }
+
+    .page-btn.active {
+        background: #EEAD4F;
+        color: #fff;
+        cursor: default;
+    }
+
+    .page-dots {
+        color: #EEAD4F;
+        padding: 0 5px;
+    }
+
+    .page-btn.prev,
+    .page-btn.next {
+        font-weight: bold;
+    }
+
+    /* 테이블 스타일 재정의 */
+    .mypage-notice-table {
+        margin-top: 30px;
+    }
+
+    .mypage-notice-type {
+        width: 80px;
+        text-align: center;
+    }
+
+    .mypage-notice-date {
+        width: 180px;
+        text-align: center;
+    }
+
+    /* 입금자명 정보 스타일 */
+    .depositor-info {
+        flex: 1;
+    }
+
+    .depositor-info .form-input {
+        width: 600px;
+        font-family: monospace;  /* 고정폭 폰트로 정렬 맞춤 */
+        letter-spacing: 0.5px;   /* 글자 간격 조정 */
+        color: #999;
+    }
+
+    .info-tooltip {
+        position: absolute;
+        top: -25px;
+        left: 0;
+        background: #333;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        color: #999;
+        display: none;
+    }
+
+    .info-tooltip .divider {
+        margin: 0 8px;
+        color: #666;
+    }
+
+    .depositor-info:hover .info-tooltip {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .info-tooltip .name { color: #EEAD4F; }
+    .info-tooltip .account { color: #fff; }
+    .info-tooltip .bank { color: #999; }
+
+    /* 모달 스타일 */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-height: 50%;
+        height: 100%;
+        border: 2px solid #C97822;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        background: #0C423E;
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+        border: 2px solid #C97822;;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-logo {
+        margin-bottom: 20px;
+        height: 40px; /* 로고의 기본 높이 설정 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-logo img {
+        height: 100%;
+        width: auto;
+        object-fit: contain; /* 비율 유지하면서 컨테이너에 맞춤 */
+    }
+
+    .modal-text {
+        color: white;
+        font-size: 18px;
+        margin-bottom: 25px;
+    }
+
+    .modal-confirm {
+        background: #EEAD4F;
+        color: #000;
+        border: none;
+        padding: 10px 40px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .modal-confirm:hover {
+        background: #f5b85a;
+    }
+
+    /* 입금신청 폼 내 보유금/트 정보 스타일 */
+    .deposit-form .balance-info {
+        display: flex;
+        gap: 20px;
+        margin: 20px 0;
+        padding: 15px;
+        border-radius: 5px;
+    }
+
+    .deposit-form .balance-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .deposit-form .balance-label {
+        font-size: 1.3em;
+        color: #ffffff;
+    }
+
+    .deposit-form .balance-value {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #EEAD4F;
+    }
+
+    .deposit-form .refresh-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        margin-left: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .deposit-form .refresh-button svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .deposit-form .point-amount {
+        font-size: 1em;
+        font-weight: normal;
+        color: #EEAD4F;
+    }
+
+    .deposit-form .point-unit {
+        font-size: 1.1em;
+        font-weight: normal;
+        color: #EEAD4F;
+    }
+
+    .deposit-form .point-container {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    /* 확인 모달 버튼 스타일 */
+    .modal-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .modal-cancel {
+        background: #666;
+        color: white;
+        border: none;
+        padding: 10px 40px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .modal-cancel:hover {
+        background: #888;
+    }
+
+    /* 입출금내역 필터 스타일 */
+    .transaction-filters {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+    }
+
+    .filter-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .filter-btn {
+        padding: 12px 25px;
+        background: #0C423E;
+        border: 1px solid #EEAD4F;
+        color: #ffffff;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .filter-btn.active {
+        background: #EEAD4F;
+        color: #ffffff;
+    }
+
+    /* 입출금내역 테이블 스타일 */
+    .transaction-table {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    .table-header {
+        display: flex;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.3);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: #EEAD4F;
+    }
+
+    .table-row {
+        display: flex;
+        padding: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff;
+    }
+
+    .col-type { width: 15%; }
+    .col-deposit { width: 25%; }
+    .col-withdraw { width: 25%; }
+    .col-balance { width: 20%; }
+    .col-date { width: 15%; }
+
+    .deposit { color: #4DFF4D; }
+    .withdraw { color: #FE4040; }
+
+    /* 달력 아이콘 스타일 수정 */
+    .date-input::-webkit-calendar-picker-indicator {
+        filter: invert(1); /* 흰색으로 변경 */
+        opacity: 0.8;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+    /* 필터 버튼 호버 효과 추가 */
+    .filter-btn:hover {
+        background: #C97822;
+    }
+
+    .search-btn:hover {
+        background: #C97822;
+    }
+
+    /* date-filter 스타일 수정 */
+    .date-filter {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 800px; /* 필터 영역 더 넓히기 */
+        justify-content: flex-end;
+    }
+
+    .date-input {
+        padding: 8px 10px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid #EEAD4F;
+        border-radius: 5px;
+        color: #fff;
+        width: 260px; /* 날짜+시간 입력을 위해 더 넓히기 */
+        cursor: pointer;
+        font-size: 13px;
+    }
+
+    /* 구분선 스타일 */
+    .date-filter span {
+        color: #EEAD4F;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    /* 조회 버튼 스타일 수정 */
+    .search-btn {
+        padding: 12px 25px;
+        background: #EEAD4F;
+        border: none;
+        border-radius: 5px;
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 14px;
+        min-width: 70px;
+        transition: background-color 0.3s ease;
+    }
+
+    .search-btn:hover {
+        background: #C97822;
+    }
+
+    /* 달력 아이콘 스타일 */
+    .date-input::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+        opacity: 0.8;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        margin-left: 10px;
+        padding-right: 10px;
+    }
+
+    /* 반응형 대응 */
+    @media screen and (max-width: 1200px) {
+        .date-filter {
+            min-width: 600px;
+        }
+        
+        .date-input {
+            width: 200px;
+        }
+    }
+
+    /* 베팅 필터 영역 스타일 */
+    .betting-filters {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+    }
+
+    .search-filters {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .search-select {
+        padding: 8px 12px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid #EEAD4F;
+        border-radius: 5px;
+        color: #fff;
+        min-width: 120px;
+        cursor: pointer;
+    }
+
+    .search-input {
+        padding: 8px 12px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid #EEAD4F;
+        border-radius: 5px;
+        color: #fff;
+        width: 200px;
+    }
+
+    .search-btn {
+        padding: 8px 20px;
+        background: #EEAD4F;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .search-btn:hover {
+        background: #C97822;
+    }
+
+    /* 게임 카테고리 메뉴 스타일 */
+    .game-category {
+        display: flex;
+        gap: 10px;
+        margin: 20px 0;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+    }
+
+    .category-btn {
+        padding: 12px 25px;
+        background: #0C423E;
+        border: 1px solid #EEAD4F;
+        color: #ffffff;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        min-width: 120px;
+        transition: all 0.3s ease;
+    }
+
+    .category-btn:hover {
+        background: #C97822;
+    }
+
+    .category-btn.active {
+        background: #EEAD4F;
+        color: #ffffff;
+    }
+
+    /* 날짜 필터 영역 */
+    .date-filter {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 400px;
+    }
+
+    /* 검색 필터 영역 */
+    .search-filters {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        min-width: 500px;
+        justify-content: flex-end;
+    }
+
+    /* 검색 셀렉트 박스 */
+    .search-select {
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid #EEAD4F;
+        border-radius: 5px;
+        color: #fff;
+        min-width: 120px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    /* 검색 입력 필드 */
+    .search-input {
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid #EEAD4F;
+        border-radius: 5px;
+        color: #fff;
+        width: 250px;
+        font-size: 14px;
+    }
+
+    /* 베팅내역 테이블 스타일 수정 */
+    .betting-table {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    .table-header {
+        display: flex;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.3);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: #EEAD4F;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .table-row {
+        display: flex;
+        padding: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff;
+        text-align: center;
+    }
+
+    /* 테이블 컬럼 너비 및 정렬 수정 */
+    .col-num { 
+        width: 8%; 
+        text-align: center;
+    }
+
+    .col-type { 
+        width: 10%; 
+        text-align: center;
+    }
+
+    .col-provider { 
+        width: 15%; 
+        text-align: center;
+    }
+
+    .col-game { 
+        width: 15%; 
+        text-align: center;
+    }
+
+    .col-bet { 
+        width: 12%; 
+        text-align: right;
+        padding-right: 15px;
+    }
+
+    .col-win { 
+        width: 12%; 
+        text-align: right;
+        padding-right: 15px;
+    }
+
+    .col-balance { 
+        width: 12%; 
+        text-align: right;
+        padding-right: 15px;
+    }
+
+    .col-time { 
+        width: 10%; 
+        text-align: center;
+    }
+
+    .col-note { 
+        width: 6%; 
+        text-align: center;
+    }
+
+    /* 금액 표시 항목 공통 스타일 */
+    .col-bet, .col-win, .col-balance {
+        font-family: 'Roboto Mono', monospace;
+    }
+
+    /* 승리/패배 금액 색상 */
+    .win { 
+        color: #4DFF4D; 
+        font-weight: bold;
+    }
+
+    .lose { 
+        color: #FE4040; 
+        font-weight: bold;
+    }
+
+    /* 테이블 헤더와 로우의 기본 정렬 설정 */
+    .table-header > div,
+    .table-row > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 금액 관련 컬럼만 우측 정렬 유지 */
+    .table-header .col-bet,
+    .table-header .col-win,
+    .table-header .col-balance,
+    .table-row .col-bet,
+    .table-row .col-win,
+    .table-row .col-balance {
+        justify-content: flex-end;
+    }
+
+    /* 게임 페이지 스타일 */
+    .dori-game-page {
+        background: radial-gradient(circle, #0C423E 0%, #001814 100%);;
+        min-height: 100vh;
+        padding: 0px;
+    }
+
+    .dori-game-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative; /* 자식 요소의 절대 위치 기준점 */
+    }
+
+    /* 타이틀 영역 */
+    .game-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        flex-direction: column;
+    }
+
+    .title-icon svg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+    }
+
+    .title-text {
+        color: #EEAD4F;
+        font-size: 20px;
+        letter-spacing: 3px;
+        font-weight: bold;
+    }
+
+    /* 게임 플��이어 영역 */
+    .game-player {
+        width: 100%;
+        margin-bottom: 0; /* 마진 제거 */
+        position: relative; /* 자식 요소의 절대 위치 기준점 */
+    }
+
+    .video-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #000;
+    }
+
+    .video-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        font-size: 24px;
+    }
+
+    /* 베팅 영역 스타일 수정 */
+    .betting-area {
+        width: 100%;
+        height: 200px;
+        position: absolute;
+        margin-bottom: 0px;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.3) 40%, rgb(0, 0, 0) 100%);
+        backdrop-filter: blur(2px);
+        z-index: 10;
+    }
+
+    /* 베팅판 타이틀 영역 */
+    .betting-title-area {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 30px;
+        padding: 0 15px;
+    }
+
+    .betting-title {
+        background: #4e4e4e;
+        width: 40%;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: center;
+        color: #fff;
+        position: absolute;
+        padding: 4px 80px;
+        margin: -30px 0px 0px 0px;
+    }
+
+    .money-box .label {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 16px;
+    }
+
+    .money-box .value {
+        color: #fff;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .house-money {
+        z-index: 1;
+    }
+
+    /* 베팅판 메인 영역 */
+    .betting-board {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin: 0px;
+        transform-origin: center center;
+    }
+
+    .bet-spot {
+        width: 100px;
+        height: 150px;
+        border: 1px solid;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+        margin: -25px 0px 0px 0px;
+        position: relative;
+    }
+
+    .bet-spot.odd, .bet-spot.one {
+        background: linear-gradient(180deg, rgba(17,43,92, 0.5) 30%, rgba(17,43,92, 0.8) 100%);
+        border-color: #0000ff;
+        border-radius: 10px 10px 10px 10px;
+    }
+
+    .bet-spot.two {
+        background: linear-gradient(180deg, rgba(7,94,7, 0.5) 30%, rgba(7,94,7, 0.8) 100%);
+        border-color: #00ff00;
+        border-radius: 10px 10px 10px 10px;
+    }
+
+    .bet-spot.three, .bet-spot.even {
+        background: linear-gradient(180deg, rgba(158,13,14, 0.5) 30%, rgba(158,13,14, 0.8) 100%);
+        border-color: #ff0000;
+        border-radius: 10px 10px 10px 10px;
+    }
+
+    .bet-spot:first-child {
+        border-radius: 65px 10px 10px 65px;
+    }
+
+    .bet-spot:last-child {
+        border-radius: 10px 65px 65px 10px;
+    }
+
+    .multiplier {
+        position: absolute;
+        bottom: 25px;
+        right: 15px;
+        font-size: 18px;
+        color: #EEAD4F;
+        font-weight: bold;
+    }
+
+    .total-bet {
+        color: #fff;
+        font-size: 12px;
+        font-weight: 150;
+        margin-top: 20px;
+    }
+
+    .spot-label {
+        position: absolute;
+        color: #fff;
+        bottom: 25px;
+        left: 22px;
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: auto;
+    }
+
+    .pattern-grid {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        gap: 2px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .pattern-cell {
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        aspect-ratio: 1/1;
+    }
+
+    .pattern-cell.result-1,
+    .pattern-cell.result-odd {
+        background: #0066ff;
+        border-color: #0066ff;
+    }
+
+    .pattern-cell.result-2 {
+        background: #00ff00;
+        border-color: #00ff00;
+    }
+
+    .pattern-cell.result-3,
+    .pattern-cell.result-even {
+        background: #ff0000;
+        border-color: #ff0000;
+    }
+
+    .pattern-cell.empty {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+
+
+    /* 컨트롤 버튼 스타일 */
+    .control-btn, .action-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        margin: 0 3px;
+        z-index: 30;
+    }
+
+    .control-btn img, .action-btn img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        z-index: 30;
+    }
+
+    /* 베팅 컨트롤 컨테이너 */
+    .betting-controls-container {
+        position: relative;
+        width: 100%;
+        padding: 0px 10px;
+        margin: 0px 0px 0px 0px;
+        z-index: 30;
+    }
+
+    /* 금액 정보 영역 */
+    .money-info {
+        display: flex;
+        gap: 5px;
+        z-index: 1;
+        order: 4;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        padding: 0 20px;
+        z-index: 30;
+    }
+
+    .money-info .house-money {
+        margin: 0px 0px 0px 0px;
+    }
+
+    .money-info .betting-amount,
+    .money-info .balance-amount {
+        margin: 0px 0px 0px 0px;
+    }
+
+    /* 베팅 컨트롤 영역 */
+    .betting-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 20px;
+        gap: 4px;
+        margin-bottom: 10px;
+        z-index: 30;
+    }
+
+    .control-buttons,
+    .chip-controls,
+    .action-buttons {
+        display: flex;
+        gap: 4px;
+    }
+
+    /* 칩과 버튼 공통 스타일 */
+    .chip,
+    .control-btn,
+    .action-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        transition: transform 0.2s;
+    }
+
+    .chip:hover,
+    .control-btn:hover,
+    .action-btn:hover {
+        transform: scale(1.1);
+    }
+
+    .chip img,
+    .control-btn img,
+    .action-btn img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    /* 금액 박스 스타일 */
+    .money-box {
+        width: 90px;
+        height: 41px;
+        padding: 4px 15px;
+        border-radius: 30px;
+        min-width: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .house-money {
+        background: linear-gradient(135deg, #000000 0%, #000000 100%);
+        border: 0.5px solid #ffffff;
+    }
+
+    .betting-amount {
+        background: linear-gradient(135deg, #000000 0%, #000000 100%);
+        border: 0.5px solid #ffffff;
+    }
+
+    .balance-amount {
+        background: linear-gradient(135deg, #000000 0%, #000000 100%);
+        border: 0.5px solid #ffffff;
+    }
+
+    .money-box .label {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 12px;
+        align-self: center;
+        font-weight: 400;
+    }
+
+    .money-box .value {
+        color: #EEAD4F;
+        font-size: 13px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        align-self: center;
+    }
+
+    /* 오른쪽 금액 정보 그룹 */
+    .right-money-info {
+        display: flex;
+        gap: 5px;
+    }
+
+
+    /* money-info 기본 스타일 (데스크톱) */
+    .money-info {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 10px;
+    }
+
+    .money-box {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+
+    .right-money-info {
+        display: flex;
+        gap: 10px;
+    }
+
+    /* 도리 모바일 스타일 */
+    @media screen and (max-width: 768px) {
+
+        .betting-title-area {
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 베팅 타이틀 숨기기 */
+        .betting-title {
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* 베팅 영역 컨테이너 */
+        .betting-area {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* money-info 스티키 설정 */
+        .betting-area .money-info {
+            position: sticky;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            z-index: 1000;
+            background: #000000;
+            padding: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dori-game-container {
+            padding: 10px;
+            padding-bottom: 70px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Video player */
+        .game-player {
+            width: 100%;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .video-container {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+
+        /* Reset transforms and 3D effects */
+        .betting-board {
+            width: 100%;
+            transform: none !important;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Betting spots */
+        .betting-spots {
+            order: 1;
+            width: 100%;
+            transform: none !important;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            padding: 0;
+            margin: 0;
+            z-index: 1000;
+        }
+
+        .bet-spot {
+            flex: 1;
+            height: 120px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+            z-index: 1000;
+        }
+        /* money-info 스티키 설정 */
+        .money-info {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: #000000;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            z-index: 999;
+        }
+
+
+        /* Betting controls */
+        .betting-controls-container {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .betting-controls {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 0;
+            order: 2;
+            flex-wrap: wrap;
+        }
+
+        .chip-controls {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            flex-wrap: nowrap;
+            order: 1;
+        }
+
+        .control-buttons,
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+            order: 2;
+        }
+
+        /* Pattern tables */
+        .pattern-table-container {
+            order: 3;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .pattern-table-left,
+        .pattern-table-right {
+            flex: 1;
+            height: 150px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 0px;
+            justify-content: space-between;
+        }
+
+
+        .money-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+        }
+
+        /* Hide quick menu on mobile */
+        .quick-menu {
+            display: none;
+        }
+
+    }
+
+    /* 데스크톱 스타일 유지 */
+    .betting-area {
+        position: relative;
+        width: 100%;
+    }
+
+    
+
+
+        /* 데스크톱 베팅 영역 스타일 */
+        @media screen and (min-width: 1150px) {
+            .betting-area {
+                position: absolute;
+                bottom: 0px;  /* 하단에 위치 */
+                left: 50%;
+                transform: translateX(-50%);  /* 가로 중앙 정렬만 적용 */
+                width: 100%;
+                max-width: 1200px;
+                z-index: 12;
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.3) 40%, rgb(0, 0, 0) 100%);
+                backdrop-filter: blur(5px);
+                padding: 0px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .betting-board {
+                position: relative;
+                width: 100%;
+                height: 300px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* 나머지 스타일은 동일하게 유지 */
+            .betting-spots {
+                position: absolute;
+                left: 50%;
+                top: 30%;
+                transform: translate(-50%, -50%) perspective(1000px) rotateX(15deg);
+                width: 500px;
+                display: flex;
+                justify-content: center;
+                gap: 4px;
+            }
+
+            .pattern-table-left {
+                position: absolute;
+                left: 0;
+                top: 25%;
+                transform: translateY(-50%);
+                width: auto;
+                height: 160px;
+                background: rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+            }
+
+            .pattern-table-right {
+                position: absolute;
+                right: 0;
+                top: 25%;
+                transform: translateY(-50%);
+                width: auto;
+                height: 160px;
+                background: rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+            }
+
+
+            
+    }
+
+    /* Video.js 커스텀 스타일 */
+    .video-js {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* 컨트롤바 스타일 */
+    .video-js .vjs-control-bar {
+        height: 4em;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+        padding-top: 1em;
+    }
+
+    /* 컨트롤 버튼 스타일링 */
+    .video-js .vjs-control {
+        width: 4em;
+    }
+
+    /* 볼륨 컨트롤 */
+    .video-js .vjs-volume-panel {
+        margin-right: 1em;
+    }
+
+    /* 시간 표시 */
+    .video-js .vjs-time-control {
+        padding: 0 1em;
+    }
+
+    @media screen and (min-width: 1150px) {
+        /* money-info 제거하고 개별 요소 스타일링 */
+        .money-box.house-money {
+            position: fixed;
+            left: 20px;
+            bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            z-index: 1000;
+        }
+
+        .right-money-info {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .betting-controls-container {
+            position: absolute;
+            left: 50%;
+            top: 55%;
+            transform: translateX(-50%);
+            width: 500px;
+            padding: 10px;
+            z-index: 2000;  /* ���장 높은 z-index */
+        }
+    }
+
+    @media screen and (min-width: 1150px) {
+        /* 비디오 플레이어 컨테이너 */
+        .video-wrapper {
+            position: relative;  /* 기준점 설정 */
+        }
+
+        /* house-money 위치 조정 */
+        .money-box.house-money {
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            z-index: 2000;
+            color: white;  /* 텍스트 색상 보장 */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);  /* 가독성 향상 */
+        }
+
+        /* right-money-info 위치 조정 */
+        .right-money-info {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 2000;
+            color: white;  /* 텍스트 색상 보장 */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);  /* 가독성 향상 */
+        }
+
+    }
+
+    /* 모바일 버전 */
+    @media screen and (max-width: 1150px) {
+        /* 베팅 스팟 영역 */
+        .betting-spots {
+            order: 1;
+            width: 100%;
+            transform: none !important;
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            gap: 5px;
+            padding: 0;
+            margin-top: 30px;
+            margin-bottom: 0px;  /* 베팅 컨트롤과의 간격 */
+            z-index: 1000;
+        }
+
+        /* 베팅 컨트롤 영역 */
+        .betting-controls-container {
+            order: 2;
+            position: relative;
+            width: 100%;
+            bottom: 0px;
+            padding: 5px 20px 0px 20px;
+            margin-bottom: 20px;
+            align-self: center;
+            justify-content: space-evenly;
+            z-index: 1001;
+        }
+
+        /* 패턴 테이블 영역 */
+        .pattern-table-container {
+            order: 3;
+            position: relative;
+            width: 100%;
+            margin-bottom: 10px;
+            align-self: center;
+            z-index: 1000;
+        }
+
+        /* 하단 고정 요소들 */
+        .money-box.house-money {
+            position: fixed;
+            min-width: 25%;
+            left: 20px;
+            bottom: 20px;
+            z-index: 1000;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .money-box.betting-amount,
+        .money-box.balance-amount {
+            min-width: 50%;
+            margin: 0px 0px 0px 0px;
+        }
+
+        .right-money-info {
+            position: fixed;
+            min-width: 35%;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1000;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        .multiplier {
+            position: absolute;
+            bottom: 3px;
+            font-size: 18px;
+            color: #EEAD4F;
+            font-weight: bold;
+            width: 80%;
+            text-align: center;
+        }
+        .spot-label {
+            position: absolute;
+            color: #fff;
+            bottom: 25px;
+            font-size: 24px;
+            font-weight: bold;
+            width: 50%;
+            text-align: center;
+        }
+    }
+
+    .betting-modal.ws-error {
+        display: none;
+    }
+
+    .betting-modal.ws-error.show {
+        display: block;
+    }
+
+    /* 모달 스타일 수정 */
+    .video-container .betting-modal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        z-index: 1000;  /* 높은 z-index 값 설정 */
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+    .video-container .betting-modal .modal-wrap {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1001;  /* modal-wrap은 배경보다 위에 */
+    }
+
+    /* 비디오 플레이어 z-index 조정 */
+    .video-js {
+        z-index: 1;  /* 모달보다 낮은 z-index */
+    }
+
+    /* betting-overlay의 z-index 조정 */
+    .betting-overlay {
+        z-index: 2;  /* 비디오보다는 위, 모달보다는 아래 */
+    }

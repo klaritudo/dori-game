@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ex.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="ex.js"></script>
+    <script src="point-conversion.js"></script>
+    <title>NM Casino - 출금신청</title>
+</head>
+<body class="main-page">
+    <!-- topbar와 nav 영역 -->
+    <div id="topbarnav-container"></div>
+
+    <!-- quick menu 영역 -->
+    <div id="quick-menu-container"></div>
+
+    <!-- 마이페이지 컨텐츠 -->
+    <div class="mypage-container">
+        <div class="mypage-title">마이페이지</div>
+
+        <!-- 상단 메뉴 탭 -->
+        <div class="mypage-menu-tab">
+            <a href="#" class="menu-tab">내정보</a>
+            <a href="#" class="menu-tab">입금</a>
+            <a href="#" class="menu-tab active">출금</a>
+            <a href="#" class="menu-tab">입출금내역</a>
+            <a href="#" class="menu-tab">베팅내역</a>
+            <a href="#" class="menu-tab support-tab">
+                고객센터
+                <span class="support-badge" style="display: inline-flex;">2</span>
+            </a>
+        </div>
+
+        <!-- 출금 신청 폼 -->
+        <div class="deposit-form">
+            <div class="form-title">출금 신청</div>
+            
+            <!-- 보유금/포인트 정보 -->
+            <div class="balance-info">
+                <div class="balance-item">
+                    <span class="balance-label">보유금액</span>
+                    <div class="balance-value">
+                        <div class="point-container">
+                            <span class="point-amount">100,000,000</span>
+                            <span class="point-unit">원</span>
+                            <button class="refresh-button">
+                                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7.5 2.5V0L4.375 3.125L7.5 6.25V3.75C9.8125 3.75 11.25 6.25 10 8.125L11.875 10C14.375 6.875 12.5 2.5 7.5 2.5Z" fill="#EEAD4F"/>
+                                    <path d="M7.5 11.25C5.1875 11.25 3.75 8.75 5 6.875L3.125 5C0.625 8.125 2.5 12.5 7.5 12.5V15L10.625 11.875L7.5 8.75V11.25Z" fill="#EEAD4F"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="balance-item">
+                    <span class="balance-label">포인트</span>
+                    <div class="point-container">
+                        <span class="point-amount">1,000,000</span>
+                        <span class="point-unit">P</span>
+                        <button class="refresh-button">
+                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.5 2.5V0L4.375 3.125L7.5 6.25V3.75C9.8125 3.75 11.25 6.25 10 8.125L11.875 10C14.375 6.875 12.5 2.5 7.5 2.5Z" fill="#EEAD4F"/>
+                                <path d="M7.5 11.25C5.1875 11.25 3.75 8.75 5 6.875L3.125 5C0.625 8.125 2.5 12.5 7.5 12.5V15L10.625 11.875L7.5 8.75V11.25Z" fill="#EEAD4F"/>
+                            </svg>
+                        </button>
+                        <button class="convert-button">전환</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-content">
+                <!-- 출금계좌 정보 -->
+                <div class="form-row">
+                    <div class="form-label">출금계좌</div>
+                    <div class="account-info">
+                        <input type="text" class="form-input" value="신한은행 110-228-723783 (김민재)" readonly>
+                    </div>
+                </div>
+
+                <!-- 신청금액 -->
+                <div class="form-row">
+                    <div class="form-label">신청금액</div>
+                    <div class="amount-input-group">
+                        <div class="amount-submit-group">
+                            <input type="text" class="form-input" placeholder="신청금액을 입력해주세요">
+                            <button class="submit-btn">출금신청</button>
+                        </div>
+                        <div class="quick-amount-buttons">
+                            <button>1만원</button>
+                            <button>5만원</button>
+                            <button>10만원</button>
+                            <button>50만원</button>
+                            <button>100만원</button>
+                            <button>정정</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 출금 유의사항 -->
+        <div class="deposit-warning">
+            <div class="warning-title">출금 유의사항!!</div>
+            <ul class="warning-list">
+                <li>회원가입 시 등록한 본인명의 계좌로만 출금이 가능합니다.</li>
+                <li>최소 출금 금액은 1만원이며, 출금 수수료는 무료입니다.</li>
+                <li>은행 점검 시간(23:00~00:30) 동안은 출금이 지연될 수 있습니다.</li>
+                <li>출금 신청 후 최대 10분 이내에 처리됩니다.</li>
+                <li>출금 신청은 0분 후 가능합니다.</li>
+            </ul>
+        </div>
+
+        <!-- 출금신청 내역 테이블 -->
+        <div class="mypage-notice-table">
+            <div class="mypage-notice-header">
+                <div class="mypage-notice-type">구분</div>
+                <div class="mypage-notice-title">내용</div>
+                <div class="mypage-notice-date">등록일</div>
+            </div>
+            <div class="mypage-notice-row">
+                <div class="mypage-notice-type">1</div>
+                <div class="mypage-notice-title">출금신청</div>
+                <div class="mypage-notice-date">2024-11-12 15:32:11</div>
+            </div>
+            <!-- 추가 내역 행... -->
+        </div>
+
+        <!-- 페이지네이션 -->
+        <div class="pagination">
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+        </div>
+    </div>
+
+    <!-- footer 영역 -->
+    <div id="footer-container"></div>
+
+    <!-- 모달 -->
+    <div class="modal" id="alertModal">
+        <div class="modal-content">
+            <div class="modal-logo">
+                <img src="img/nm_logo.svg">
+            </div>
+            <div class="modal-text"></div>
+            <button class="modal-confirm">확인</button>
+        </div>
+    </div>
+
+    <!-- 확인 모달 -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-logo">
+                <img src="img/nm_logo.svg">
+            </div>
+            <div class="modal-text"></div>
+            <div class="modal-buttons">
+                <button class="modal-confirm">확인</button>
+                <button class="modal-cancel">취소</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // 공통 로드
+            $("#topbarnav-container").load("topbarnav.html");
+            $("#quick-menu-container").load("ex.html #quick-menu");
+            $("#footer-container").load("footer.html");
+
+            // 금액 입력 필드에 ���벤트 리스너 추가
+            $('.amount-input-group .form-input').on('input', function() {
+                // 숫자만 추출
+                let value = $(this).val().replace(/[^\d]/g, '');
+                
+                // 값이 있을 경우에만 처리
+                if (value) {
+                    // 천단위 콤마 추가
+                    const formattedValue = parseInt(value).toLocaleString('ko-KR');
+                    $(this).val(formattedValue);
+                }
+            });
+
+            // 금액 버튼 클릭 이벤트
+            $('.quick-amount-buttons button').not(':last-child').on('click', function() {
+                const amountText = $(this).text();
+                let clickedAmount = 0;
+                
+                if (amountText.includes('만원')) {
+                    clickedAmount = parseInt(amountText.replace('만원', '')) * 10000;
+                }
+                
+                const currentInput = $('.amount-input-group .form-input').val();
+                let currentAmount = 0;
+                
+                if (currentInput) {
+                    currentAmount = parseInt(currentInput.replace(/,/g, ''));
+                }
+                
+                const totalAmount = currentAmount + clickedAmount;
+                const formattedAmount = totalAmount.toLocaleString('ko-KR');
+                $('.amount-input-group .form-input').val(formattedAmount);
+            });
+
+            // 정정 버튼 클릭 이벤트
+            $('.quick-amount-buttons button:last-child').on('click', function() {
+                $('.amount-input-group .form-input').val('');
+            });
+
+            // 출금신청 버튼 클릭 이벤트
+            $('.submit-btn').on('click', function() {
+                // 현재 보유금액 가져오기 (콤마 제거 후 숫자 변환)
+                const currentBalance = window.balanceState ? 
+                    window.balanceState.balance : 
+                    parseInt($('.balance-item:first .point-amount').text().replace(/,/g, '')) || 0;
+                
+                // 출금 신청 금액 검증
+                const amountInput = $('.amount-input-group .form-input').val();
+                if (!amountInput) {
+                    showModal("출금 금액을 입력해주세요.");
+                    return;
+                }
+
+                // 신청 금액을 숫자로 변환 (콤마 제거)
+                const withdrawAmount = parseInt(amountInput.replace(/,/g, '')) || 0;
+
+                // 최소 출금 금액 체크
+                if (withdrawAmount < 10000) {
+                    showModal("최소 출금 금액은 1만원입니다.");
+                    return;
+                }
+
+                // 보유금액 체크
+                if (currentBalance <= 0) {
+                    showModal("보유금액이 없습니다.");
+                    $('.amount-input-group .form-input').val('');
+                    return;
+                }
+
+                // 보유금액 초과 체크
+                if (withdrawAmount > currentBalance) {
+                    showModal("출금금액이 보유금액보다 많습니다.");
+                    return;
+                }
+
+                // 모든 검증 통과 시 출금 확인 모달 표시
+                showConfirmModal("출금 신청하시겠습니까?", function() {
+                    // 새로운 잔액 계산
+                    const newBalance = currentBalance - withdrawAmount;
+                    
+                    // window.balanceState 업데이트
+                    if (window.balanceState) {
+                        window.balanceState.balance = newBalance;
+                    }
+                    
+                    // DOM 업데이트
+                    updateBalanceDisplay(newBalance);
+                    
+                    // 성공 메시지 표시 및 입력 필드 초기화
+                    showModal("출금신청이 완료되었습니다.");
+                    $('.amount-input-group .form-input').val('');
+                });
+            });
+
+            // 새로고침 버튼 클릭 이벤트
+            $('.refresh-button').on('click', function() {
+                const $button = $(this);
+                const $svg = $button.find('svg');
+                
+                // 애니메이션
+                $svg.css({
+                    'transform': 'rotate(360deg)',
+                    'transition': 'transform 0.5s'
+                });
+                
+                setTimeout(() => {
+                    $svg.css({
+                        'transform': 'rotate(0deg)',
+                        'transition': 'none'
+                    });
+                }, 500);
+
+                // 현재 잔액 가져오기
+                const currentBalance = window.balanceState ? 
+                    window.balanceState.balance : 
+                    parseInt($('.balance-item:first .point-amount').text().replace(/,/g, '')) || 0;
+
+                // 잔액 업데이트
+                updateBalanceDisplay(currentBalance);
+            });
+
+            // 보유금액 표시 함수
+            function updateBalanceDisplay(balance) {
+                // NaN 체크 추가
+                const safeBalance = isNaN(balance) ? 0 : balance;
+                const formattedBalance = Math.max(0, safeBalance).toLocaleString('ko-KR');
+                $('.balance-item:first .point-amount').text(formattedBalance);
+            }
+
+            // 초기 로드 시 보유금액 설정
+            const initialBalance = window.balanceState ? 
+                window.balanceState.balance : 
+                parseInt($('.balance-item:first .point-amount').text().replace(/,/g, '')) || 0;
+            
+            updateBalanceDisplay(initialBalance);
+        });
+
+        // 모달 표시 함수
+        function showModal(message) {
+            const $modal = $('#alertModal');
+            $modal.find('.modal-text').text(message);
+            $modal.css('display', 'flex');
+
+            // 확인 버튼 이벤트
+            $modal.find('.modal-confirm').one('click', function() {
+                $modal.css('display', 'none');
+            });
+        }
+
+        // 확인 모달 표시 함수
+        function showConfirmModal(message, callback) {
+            const $modal = $('#confirmModal');
+            $modal.find('.modal-text').text(message);
+            $modal.css('display', 'flex');
+
+            // 확인 버튼 이벤트
+            $modal.find('.modal-confirm').one('click', function() {
+                callback();
+                $modal.css('display', 'none');
+            });
+
+            // 취소 버튼 이벤트
+            $modal.find('.modal-cancel').one('click', function() {
+                $modal.css('display', 'none');
+            });
+        }
+    </script>
+</body>
+</html>

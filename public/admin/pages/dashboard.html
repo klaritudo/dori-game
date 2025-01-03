@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 대시보드</title>
+    <link rel="stylesheet" href="../css/admin-base.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/admin-dark.css">
+    <link rel="stylesheet" href="../css/admin-light.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- 사이드바 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../assets/logo.svg" alt="로고" class="logo">
+                <button class="theme-toggle" id="themeToggle">
+                    <svg class="theme-icon"></svg>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="dashboard.html">
+                            <svg class="nav-icon"><!-- 대시보드 아이콘 --></svg>
+                            대시���드
+                        </a>
+                    </li>
+                    <li>
+                        <a href="game-manage.html">
+                            <svg class="nav-icon"><!-- 게임관리 아이콘 --></svg>
+                            게임 관리
+                        </a>
+                    </li>
+                    <li>
+                        <a href="user-manage.html">
+                            <svg class="nav-icon"><!-- 회원관리 아이콘 --></svg>
+                            회원 관리
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <svg class="nav-icon"><!-- 설정 아이콘 --></svg>
+                            설정
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 메인 컨텐츠 -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1>대시보드</h1>
+                <div class="header-actions">
+                    <div class="admin-info">
+                        <span class="admin-name">관리자</span>
+                        <button class="logout-btn">로그아웃</button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <!-- 대시보드 카드들 -->
+                <div class="card">
+                    <h3>실시간 게임 현황</h3>
+                    <!-- 게임 현황 내용 -->
+                </div>
+                
+                <div class="card">
+                    <h3>베팅 현황</h3>
+                    <!-- 베팅 현황 내용 -->
+                </div>
+                
+                <div class="card">
+                    <h3>회원 현황</h3>
+                    <!-- 회원 현황 내용 -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/core/theme-switcher.js"></script>
+    <script src="../js/core/sidebar.js"></script>
+</body>
+</html> 

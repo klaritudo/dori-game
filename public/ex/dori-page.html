@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ex.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module" src="ex.js"></script>
+    <script src="point-conversion.js"></script>
+    <script src="betting-overlay.js"></script>
+    <script type="module" src="js/websocket-client.js"></script>
+    <script type="module" src="js/game-control.js"></script>
+    <title>도리짓고땡</title>
+    <!-- Video.js CSS -->
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+    <!-- Video.js -->
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/touch.css">
+    <link rel="stylesheet" href="css/components/loading.css">
+    <link rel="stylesheet" href="css/components/toast.css">
+</head>
+<body class="dori-game-page">
+    <!-- topbar와 nav 영역 -->
+    <div id="topbarnav-container"></div>
+
+    <!-- quick menu 영역 -->
+    <div id="quick-menu-container"></div>
+
+    <!-- 게임 컨테이너 -->
+    <div class="dori-game-container">
+        <!-- 타이틀 영역 -->
+        <div class="game-title">
+            <div class="title-icon">
+                <img src="img/dori-logo.svg" alt="도리짓고땡">
+            </div>
+            <h1 class="title-text">도리짓고땡</h1>
+        </div>
+
+        <!-- 게임 플레이어 영역 -->
+        <div class="game-container">
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <video 
+                        id="gamePlayer" 
+                        class="video-js"
+                        playsinline
+                        preload="auto"
+                    >
+                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            
+            <!-- 베팅 영역 -->
+            <div class="betting-overlay">
+                <div class="betting-area">
+
+                    <!-- betting-spots -->
+                    <div class="betting-spots">
+                        <div class="bet-spot odd">
+                            <div class="multiplier">1.93</div>
+                            <div class="total-bet">0</div>
+                            <div class="spot-label">홀</div>
+                        </div>
+                        <div class="bet-spot one">
+                            <div class="multiplier">1.93</div>
+                            <div class="total-bet">0</div>
+                            <div class="spot-label">1</div>
+                        </div>
+                        <div class="bet-spot two">
+                            <div class="multiplier">1.93</div>
+                            <div class="total-bet">0</div>
+                            <div class="spot-label">2</div>
+                        </div>
+                        <div class="bet-spot three">
+                            <div class="multiplier">1.93</div>
+                            <div class="total-bet">0</div>
+                            <div class="spot-label">3</div>
+                        </div>
+                        <div class="bet-spot even">
+                            <div class="multiplier">1.93</div>
+                            <div class="total-bet">0</div>
+                            <div class="spot-label">짝</div>
+                        </div>
+                    </div>
+
+                    <!-- betting-controls-container -->
+                    <div class="betting-controls-container">
+                        <div class="betting-controls">
+                            <div class="control-buttons">
+                                <button class="control-btn undo">
+                                    <img src="img/betcontrol/betcontrol-undo.svg" alt="돌리기">
+                                </button>
+                                <button class="control-btn confirm">
+                                    <img src="img/betcontrol/betcontrol-confirm.svg" alt="인">
+                                </button>
+                            </div>
+                            <div class="chip-controls">
+                                <button class="chip" data-value="1">
+                                    <img src="img/betcontrol/chip1.svg" alt="1만">
+                                </button>
+                                <button class="chip" data-value="3">
+                                    <img src="img/betcontrol/chip2.svg" alt="3만">
+                                </button>
+                                <button class="chip" data-value="4">
+                                    <img src="img/betcontrol/chip3.svg" alt="4만">
+                                </button>
+                                <button class="chip" data-value="10">
+                                    <img src="img/betcontrol/chip4.svg" alt="10만">
+                                </button>
+                                <button class="chip" data-value="50">
+                                    <img src="img/betcontrol/chip5.svg" alt="50만">
+                                </button>
+                                <button class="chip" data-value="100">
+                                    <img src="img/betcontrol/chip6.svg" alt="100만">
+                                </button>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="action-btn double">
+                                    <img src="img/betcontrol/betcontrol-double.svg" alt="X2">
+                                </button>
+                                <button class="action-btn cancel">
+                                    <img src="img/betcontrol/betcontrol-cancle.svg" alt="취소">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- pattern-table-container -->
+                    <div class="pattern-table-container">
+                        <div class="pattern-table-left">
+                            <div class="pattern-grid">
+                                <!-- JavaScript로 동적 생성 -->
+                            </div>
+                        </div>
+                        <div class="pattern-table-right">
+                            <div class="pattern-grid">
+                                <!-- JavaScript로 동적 생성 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 기존 betting-modal과 같은 레벨에 추가 -->
+                <div class="betting-modal ws-error" style="display: none;">
+                    <div class="modal-wrap">
+                        <div class="modal-content">
+                            <img src="img/error-icon.svg" alt="에러" class="error-icon">
+                            <p class="modal-text">연결이 끊어졌습니다</p>
+                            <button class="modal-button retry-btn">재연결</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- money-info betting-area 밖으로 이동 -->
+        <div class="money-info">
+            <div class="money-box house-money">
+                <span class="label">하우스머니</span>
+                <span class="value">10,000,000</span>
+            </div>
+            <div class="right-money-info">
+                <div class="money-box betting-amount">
+                    <span class="label">베팅금</span>
+                    <span class="value">100,000</span>
+                </div>
+                <div class="money-box balance-amount">
+                    <span class="label">유저보유금</span>
+                    <span class="value">100,000,000</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 페이지 하단에 웹소켓 상태 표시 추가 -->
+    <div id="ws-status" style="position: fixed; bottom: 10px; right: 10px; padding: 5px;">
+        WebSocket: <span class="status">연결 중...</span>
+    </div>
+
+    <script>
+        // 패턴 그리드 생성 함수
+        function createPatternGrid() {
+            const leftGrid = document.querySelector('.pattern-table-left .pattern-grid');
+            const rightGrid = document.querySelector('.pattern-table-right .pattern-grid');
+            
+            // 각 그리드에 50개의 셀 생성 (10x5)
+            for (let i = 0; i < 50; i++) {
+                const leftCell = document.createElement('div');
+                const rightCell = document.createElement('div');
+                
+                leftCell.className = 'pattern-cell empty';
+                rightCell.className = 'pattern-cell empty';
+                
+                leftGrid.appendChild(leftCell);
+                rightGrid.appendChild(rightCell);
+            }
+        }
+
+        // 페이지 로드 시 그리드 생성과 topbarnav 로드
+        $(document).ready(function() {
+            createPatternGrid();
+            
+            // topbarnav 로드
+            $("#topbarnav-container").load("topbarnav.html");
+            
+            // quick menu 로드
+            $("#quick-menu-container").load("ex.html #quick-menu");
+        });
+    </script>
+    <script type="module">
+        import { WebSocketClient } from './js/websocket-client.js';
+        import { GameController } from './js/game-controller.js';
+        
+        // WebSocket 클라이언트 초기화
+        const wsClient = new WebSocketClient();
+        
+        // 게임 컨트롤러 초기화
+        const gameController = new GameController(wsClient);
+        
+        // WebSocket 상태 표시 업데이트
+        const wsStatus = document.querySelector('#ws-status .status');
+
+        // WebSocket 상태 업데이트 함수
+        function updateWsStatus(status, message) {
+            wsStatus.textContent = message;
+            wsStatus.className = `status ${status}`;
+        }
+
+        // WebSocket 이벤트 리스너
+        wsClient.ws.onopen = () => {
+            updateWsStatus('connected', '연결됨');
+        };
+
+        wsClient.ws.onclose = () => {
+            updateWsStatus('disconnected', '연결 끊김');
+        };
+
+        wsClient.ws.onerror = () => {
+            updateWsStatus('error', '연결 오류');
+        };
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

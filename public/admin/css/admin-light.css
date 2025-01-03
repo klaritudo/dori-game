@@ -1,0 +1,21 @@
+[data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --bg-tertiary: #e9ecef;
+    
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --text-tertiary: #999999;
+    
+    --border-color: rgba(0, 0, 0, 0.1);
+    
+    --accent-color: #3699FF;
+    --accent-hover: #1a7fd1;
+    
+    --success-color: #0BB783;
+    --warning-color: #FFA800;
+    --danger-color: #F64E60;
+    
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+} 

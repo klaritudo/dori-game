@@ -1,0 +1,116 @@
+/* 게임 관리 페이지 전용 스타일 */
+.game-manage {
+    /* 게임 관리 페이지 전체 컨테이너 */
+    padding: 20px;
+}
+
+/* 기존 스타일과 구분을 위한 네임스페이스 추가 */
+.game-manage .game-settings {
+    background: #f5f5f5;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.game-manage .setting-item {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.game-manage .setting-item label {
+    min-width: 180px;
+    font-weight: 500;
+    color: #333;
+}
+
+.game-manage .setting-item input[type="number"],
+.game-manage .setting-item select {
+    flex: 1;
+    max-width: 200px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.game-manage .setting-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.game-manage .setting-item input:disabled,
+.game-manage .setting-item select:disabled {
+    background-color: #eee;
+    cursor: not-allowed;
+}
+
+/* 타이머 섹션 - 기존 스타일과 구분 */
+.game-manage .timer-section {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.game-manage .game-timer {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+}
+
+.game-manage .betting-timer {
+    font-size: 18px;
+    color: #666;
+}
+
+.game-manage .game-status {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* 컨트롤 버튼 - 기존 스타일과 구분 */
+.game-manage .control-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.game-manage .control-buttons button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.game-manage #startGame {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.game-manage #stopGame {
+    background-color: #f44336;
+    color: white;
+}
+
+.game-manage #startGame:hover {
+    background-color: #45a049;
+}
+
+.game-manage #stopGame:hover {
+    background-color: #da190b;
+}
+
+.game-manage button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+} 

@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ex.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="ex.js"></script>
+    <title>NM Casino - IN</title>
+</head>
+<body class="main-page">
+    <div id="topbarnav-container"></div>
+    <div id="quick-menu-container"></div>
+
+    <div class="slider-container">
+        <script>
+            $(document).ready(function() {
+                // topbarnav 로드
+                $("#topbarnav-container").load("topbarnav.html");
+    
+                // quick menu 로드
+                $("#quick-menu-container").load("ex.html #quick-menu");
+            });
+        </script>
+        <div class="slider">
+            <div class="slide">
+                <img src="img/Group.png" alt="Promotion 1" class="main-image">
+                <img src="img/Rectangle.png" alt="Promotion 2" class="sub-image">
+            </div>
+        </div>
+    </div>
+    <div class="divider"></div>
+
+    <!-- 검색 영역 추가 -->
+    <div class="search-container">
+        <!-- 게임 검색 -->
+        <div class="search-box">
+            <input type="text" placeholder="게임검색" class="search-input">
+            <button class="search-button">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.7555 18.6065L16.0944 14.9453C17.4834 13.3658 18.3333 11.2904 18.3333 9.02778C18.3333 4.04466 14.2887 0 9.30556 0C4.32244 0 0.277778 4.04466 0.277778 9.02778C0.277778 14.0109 4.32244 18.0556 9.30556 18.0556C11.5682 18.0556 13.6436 17.2056 15.2231 15.8167L18.8843 19.4778C19.0009 19.5944 19.1574 19.6528 19.3199 19.6528C19.4824 19.6528 19.6389 19.5944 19.7555 19.4778C19.9947 19.2386 19.9947 18.8457 19.7555 18.6065ZM9.30556 16.6667C5.09244 16.6667 1.66667 13.2409 1.66667 9.02778C1.66667 4.81466 5.09244 1.38889 9.30556 1.38889C13.5187 1.38889 16.9444 4.81466 16.9444 9.02778C16.9444 13.2409 13.5187 16.6667 9.30556 16.6667Z" fill="#EEAD4F"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- 게임사 검색 -->
+        <div class="search-box provider-search">
+            <input type="text" placeholder="게임사검색" class="search-input">
+            <button class="search-button">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.7555 18.6065L16.0944 14.9453C17.4834 13.3658 18.3333 11.2904 18.3333 9.02778C18.3333 4.04466 14.2887 0 9.30556 0C4.32244 0 0.277778 4.04466 0.277778 9.02778C0.277778 14.0109 4.32244 18.0556 9.30556 18.0556C11.5682 18.0556 13.6436 17.2056 15.2231 15.8167L18.8843 19.4778C19.0009 19.5944 19.1574 19.6528 19.3199 19.6528C19.4824 19.6528 19.6389 19.5944 19.7555 19.4778C19.9947 19.2386 19.9947 18.8457 19.7555 18.6065ZM9.30556 16.6667C5.09244 16.6667 1.66667 13.2409 1.66667 9.02778C1.66667 4.81466 5.09244 1.38889 9.30556 1.38889C13.5187 1.38889 16.9444 4.81466 16.9444 9.02778C16.9444 13.2409 13.5187 16.6667 9.30556 16.6667Z" fill="#EEAD4F"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Quick Menu -->
+    <div class="quick-menu">
+        <div class="quick-menu-items">
+            <a href="#" class="quick-menu-item">
+                <img src="img/quick-deposit.svg" alt="입금">
+                <span>입금</span>
+            </a>
+            <a href="#" class="quick-menu-item">
+                <img src="img/quick-withdrawal.svg" alt="출금">
+                <span>출금</span>
+            </a>
+            <a href="#" class="quick-menu-item">
+                <img src="img/quick-betting-history.svg" alt="베팅내역">
+                <span>베팅내역</span>
+            </a>
+            <a href="#" class="quick-menu-item">
+                <img src="img/quick-invite.svg" alt="친구초대">
+                <span>친구초대</span>
+            </a>
+            <a href="#" class="quick-menu-item">
+                <img src="img/quick-cs.svg" alt="고객센터">
+                <span>고객센터</span>
+            </a>
+            <a href="#" class="quick-menu-item">
+                <img src="img/quick-guide.svg" alt="이용가이드">
+                <span>이용가이드</span>
+            </a>
+        </div>
+        <button class="quick-menu-toggle-bottom">
+            <span>접기</span>
+        </button>
+    </div>
+
+    <!-- 신규게임 섹션 -->
+    <div class="section-container">
+        <div class="section-header">
+            <div class="title-wrapper">
+                <h2 class="section-title">신규게임</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="more-wrapper">
+                <span class="more-text">더보기</span>
+                <svg class="more-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="plus" d="M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z" fill="white"/>
+                    <path class="minus" d="M14 8H0V6H14V8Z" fill="white" style="display: none;"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="card-slider-outer">
+            <button class="slider-arrow prev">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </button>
+            <button class="slider-arrow next">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </button>
+            <div class="card-slider-container">
+                <div class="card-slider">
+                    <!-- 1번 카드 -->
+                    <div class="card">
+                        <a href="/game/money-train-3" class="card-link">
+                            <img src="img/game-img/Thumbnail_MoneyTrain3_600x600.png" alt="Money Train 3" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Money Train 3</div>
+                                <div class="provider">
+                                    <img src="path/to/evolution-logo.png" alt="Evolution" class="provider-logo">
+                                    <span class="provider-name">Evolution</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">스위트 보난자는 캔디 테마의 6x5 그리드 슬롯으로...</div>
+                        </div>
+                    </div>
+
+                    <!-- 2번 카드 -->
+                    <div class="card">
+                        <a href="/game/gates-of-olympus" class="card-link">
+                            <img src="https://cdn.example.com/gates-of-olympus.jpg" alt="Gates of Olympus" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Gates of Olympus</div>
+                                <div class="provider">
+                                    <img src="path/to/pragmatic-logo.png" alt="Pragmatic Play" class="provider-logo">
+                                    <span class="provider-name">Pragmatic Play</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">그리스 신화를 테마로 한 6x5 그리드 슬롯으로...</div>
+                        </div>
+                    </div>
+
+                    <!-- 3번 카드 -->
+                    <div class="card">
+                        <a href="/game/starburst" class="card-link">
+                            <img src="https://cdn.example.com/starburst.jpg" alt="Starburst" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Starburst</div>
+                                <div class="provider">
+                                    <img src="path/to/netent-logo.png" alt="NetEnt" class="provider-logo">
+                                    <span class="provider-name">NetEnt</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">우주를 배경으로 한 5x3 슬롯으로...</div>
+                        </div>
+                    </div>
+
+                    <!-- 4번 카드 -->
+                    <div class="card">
+                        <a href="/game/sweet-bonanza" class="card-link">
+                            <img src="https://cdn.example.com/sweet-bonanza.jpg" alt="Sweet Bonanza" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Sweet Bonanza</div>
+                                <div class="provider">
+                                    <img src="path/to/pragmatic-logo.png" alt="Pragmatic Play" class="provider-logo">
+                                    <span class="provider-name">Pragmatic Play</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">달콤한 캔디 테마의 6x5 슬롯으로...</div>
+                        </div>
+                    </div>
+
+                    <!-- 5번 카드 -->
+                    <div class="card">
+                        <a href="/game/book-of-dead" class="card-link">
+                            <img src="https://cdn.example.com/book-of-dead.jpg" alt="Book of Dead" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Book of Dead</div>
+                                <div class="provider">
+                                    <img src="path/to/playngo-logo.png" alt="Play'n GO" class="provider-logo">
+                                    <span class="provider-name">Play'n GO</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">고대 이집트를 배경으로 한 5x3 슬롯으로...</div>
+                        </div>
+                    </div>
+
+                    <!-- 6번 카드 -->
+                    <div class="card">
+                        <a href="/game/wolf-gold" class="card-link">
+                            <img src="https://cdn.example.com/wolf-gold.jpg" alt="Wolf Gold" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Wolf Gold</div>
+                                <div class="provider">
+                                    <img src="path/to/pragmatic-logo.png" alt="Pragmatic Play" class="provider-logo">
+                                    <span class="provider-name">Pragmatic Play</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">늑대의 영혼과 함께하는 황금빛 모험...</div>
+                        </div>
+                    </div>
+
+                    <!-- 7번 카드 -->
+                    <div class="card">
+                        <a href="/game/gonzos-quest" class="card-link">
+                            <img src="https://cdn.example.com/gonzo-quest.jpg" alt="Gonzo's Quest" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Gonzo's Quest</div>
+                                <div class="provider">
+                                    <img src="path/to/netent-logo.png" alt="NetEnt" class="provider-logo">
+                                    <span class="provider-name">NetEnt</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">잃어버린 도시를 찾아 떠나는 모험...</div>
+                        </div>
+                    </div>
+
+                    <!-- 8번 카드 -->
+                    <div class="card">
+                        <a href="/game/fruit-party" class="card-link">
+                            <img src="https://cdn.example.com/fruit-party.jpg" alt="Fruit Party" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Fruit Party</div>
+                                <div class="provider">
+                                    <img src="path/to/pragmatic-logo.png" alt="Pragmatic Play" class="provider-logo">
+                                    <span class="provider-name">Pragmatic Play</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">화려한 과일 파티에 초대합니다...</div>
+                        </div>
+                    </div>
+
+                    <!-- 9번 카드 -->
+                    <div class="card">
+                        <a href="/game/reactoonz" class="card-link">
+                            <img src="https://cdn.example.com/reactoonz.jpg" alt="Reactoonz" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Reactoonz</div>
+                                <div class="provider">
+                                    <img src="path/to/playngo-logo.png" alt="Play'n GO" class="provider-logo">
+                                    <span class="provider-name">Play'n GO</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">귀여운 외계인들과 함께하는 그리드 슬롯...</div>
+                        </div>
+                    </div>
+
+                    <!-- 10번 카드 -->
+                    <div class="card">
+                        <a href="/game/the-dog-house" class="card-link">
+                            <img src="https://cdn.example.com/dog-house.jpg" alt="The Dog House" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">The Dog House</div>
+                                <div class="provider">
+                                    <img src="path/to/pragmatic-logo.png" alt="Pragmatic Play" class="provider-logo">
+                                    <span class="provider-name">Pragmatic Play</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">귀여운 강아지들과 함께하는 5x3 슬롯...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 인기게임 섹션 -->
+    <div class="section-container popular-section">
+        <div class="section-header">
+            <div class="title-wrapper">
+                <h2 class="section-title">인기게임</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="more-wrapper popular-more">
+                <span class="more-text">더보기</span>
+                <svg class="more-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="plus" d="M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z" fill="white"/>
+                    <path class="minus" d="M0 6H14V8H0V6Z" fill="white" style="display: none;"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="card-slider-outer popular-slider-outer">
+            <button class="slider-arrow prev">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </button>
+            <button class="slider-arrow next">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </button>
+            <div class="card-slider-container">
+                <div class="card-slider popular-slider">
+                    <!-- 1번 카드 -->
+                    <div class="card">
+                        <a href="/game/money-train-3" class="card-link">
+                            <img src="img/game-img/Thumbnail_MoneyTrain3_600x600.png" alt="Money Train 3" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Money Train 3</div>
+                                <div class="provider">
+                                    <img src="path/to/evolution-logo.png" alt="Evolution" class="provider-logo">
+                                    <span class="provider-name">Evolution</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">스위트 보난자는 캔디 테마의 6x5 그리드 슬롯으로...</div>
+                        </div>
+                    </div>
+
+                    <!-- 2번 카드 -->
+                    <div class="card">
+                        <a href="/game/gates-of-olympus" class="card-link">
+                            <img src="https://cdn.example.com/gates-of-olympus.jpg" alt="Gates of Olympus" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Gates of Olympus</div>
+                                <div class="provider">
+                                    <img src="path/to/pragmatic-logo.png" alt="Pragmatic Play" class="provider-logo">
+                                    <span class="provider-name">Pragmatic Play</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">그리스 신화를 테마로 한 6x5 그리드 슬롯으로...</div>
+                        </div>
+                    </div>
+
+                    <!-- 3번 카드 -->
+                    <div class="card">
+                        <a href="/game/starburst" class="card-link">
+                            <img src="https://cdn.example.com/starburst.jpg" alt="Starburst" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Starburst</div>
+                                <div class="provider">
+                                    <img src="path/to/netent-logo.png" alt="NetEnt" class="provider-logo">
+                                    <span class="provider-name">NetEnt</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">우주를 배경으로 한 5x3 슬롯으로...</div>
+                        </div>
+                    </div>
+
+                    <!-- 4번 카드 -->
+                    <div class="card">
+                        <a href="/game/sweet-bonanza" class="card-link">
+                            <img src="https://cdn.example.com/sweet-bonanza.jpg" alt="Sweet Bonanza" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Sweet Bonanza</div>
+                                <div class="provider">
+                                    <img src="path/to/pragmatic-logo.png" alt="Pragmatic Play" class="provider-logo">
+                                    <span class="provider-name">Pragmatic Play</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">달콤한 캔디 테마의 6x5 슬롯으로...</div>
+                        </div>
+                    </div>
+
+                    <!-- 5번 카드 -->
+                    <div class="card">
+                        <a href="/game/book-of-dead" class="card-link">
+                            <img src="https://cdn.example.com/book-of-dead.jpg" alt="Book of Dead" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Book of Dead</div>
+                                <div class="provider">
+                                    <img src="path/to/playngo-logo.png" alt="Play'n GO" class="provider-logo">
+                                    <span class="provider-name">Play'n GO</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">고대 이집트를 배경으로 한 5x3 슬롯으로...</div>
+                        </div>
+                    </div>
+
+                    <!-- 6번 카드 -->
+                    <div class="card">
+                        <a href="/game/wolf-gold" class="card-link">
+                            <img src="https://cdn.example.com/wolf-gold.jpg" alt="Wolf Gold" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Wolf Gold</div>
+                                <div class="provider">
+                                    <img src="path/to/pragmatic-logo.png" alt="Pragmatic Play" class="provider-logo">
+                                    <span class="provider-name">Pragmatic Play</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">늑대의 영혼과 함께하는 황금빛 모험...</div>
+                        </div>
+                    </div>
+
+                    <!-- 7번 카드 -->
+                    <div class="card">
+                        <a href="/game/gonzos-quest" class="card-link">
+                            <img src="https://cdn.example.com/gonzo-quest.jpg" alt="Gonzo's Quest" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Gonzo's Quest</div>
+                                <div class="provider">
+                                    <img src="path/to/netent-logo.png" alt="NetEnt" class="provider-logo">
+                                    <span class="provider-name">NetEnt</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">잃어버린 도시를 찾아 떠나는 모험...</div>
+                        </div>
+                    </div>
+
+                    <!-- 8번 카드 -->
+                    <div class="card">
+                        <a href="/game/fruit-party" class="card-link">
+                            <img src="https://cdn.example.com/fruit-party.jpg" alt="Fruit Party" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Fruit Party</div>
+                                <div class="provider">
+                                    <img src="path/to/pragmatic-logo.png" alt="Pragmatic Play" class="provider-logo">
+                                    <span class="provider-name">Pragmatic Play</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">화려한 과일 파티에 초대합니다...</div>
+                        </div>
+                    </div>
+
+                    <!-- 9번 카드 -->
+                    <div class="card">
+                        <a href="/game/reactoonz" class="card-link">
+                            <img src="https://cdn.example.com/reactoonz.jpg" alt="Reactoonz" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">Reactoonz</div>
+                                <div class="provider">
+                                    <img src="path/to/playngo-logo.png" alt="Play'n GO" class="provider-logo">
+                                    <span class="provider-name">Play'n GO</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">귀여운 외계인들과 함께하는 그리드 슬롯...</div>
+                        </div>
+                    </div>
+
+                    <!-- 10번 카드 -->
+                    <div class="card">
+                        <a href="/game/the-dog-house" class="card-link">
+                            <img src="https://cdn.example.com/dog-house.jpg" alt="The Dog House" class="game-image">
+                            <div class="game-info">
+                                <div class="game-name">The Dog House</div>
+                                <div class="provider">
+                                    <img src="path/to/pragmatic-logo.png" alt="Pragmatic Play" class="provider-logo">
+                                    <span class="provider-name">Pragmatic Play</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="white"/>
+                            </svg>
+                            <div class="tooltip">귀여운 강아지들과 함께하는 5x3 슬롯...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JACKPOT TOP10 섹션 -->
+    <div class="section-container jackpot-section">
+        <div class="section-header">
+            <div class="title-wrapper">
+                <h2 class="section-title jackpot-title">JACKPOT TOP10</h2>
+                <div class="title-underline"></div>
+            </div>
+        </div>
+        
+        <!-- 잭팟 슬라이더 컨테이너 -->
+        <div class="jackpot-slider-outer">
+            <div class="jackpot-slider">
+                <!-- 1번 잭팟 아이템 -->
+                <div class="jackpot-item">
+                    <div class="game-thumbnail">
+                        <img src="img/game-img/Thumbnail_MoneyTrain3_600x600.png" alt="제페니즈스피드바카라3">
+                    </div>
+                    <div class="jackpot-info">
+                        <div class="winner-id">
+                            <svg class="crown-icon" width="20" height="20" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 12L24 18L18 6L12 18L6 12L8 30H28L30 12ZM4 10C5.65685 10 7 8.65685 7 7C7 5.34315 5.65685 4 4 4C2.34315 4 1 5.34315 1 7C1 8.65685 2.34315 10 4 10ZM32 10C33.6569 10 35 8.65685 35 7C35 5.34315 33.6569 4 32 4C30.3431 4 29 5.34315 29 7C29 8.65685 30.3431 10 32 10ZM18 4C19.6569 4 21 2.65685 21 1C21 -0.656854 19.6569 -2 18 -2C16.3431 -2 15 -0.656854 15 1C15 2.65685 16.3431 4 18 4Z" fill="#EEAD4F"/>
+                            </svg>
+                            <span class="id-text">tester0001</span>
+                        </div>
+                        <div class="prize-amount">₩100,000,000</div>
+                        <div class="game-title">제페니즈스피드바카라3</div>
+                        <div class="win-date">2024. 11. 12 14:16:47</div>
+                    </div>
+                </div>
+
+                <!-- 2번 잭팟 아이템 -->
+                <div class="jackpot-item">
+                    <div class="game-thumbnail">
+                        <img src="https://img.game.co.kr/images/slots/sweet-bonanza.jpg" alt="스위트 보난자">
+                    </div>
+                    <div class="jackpot-info">
+                        <div class="winner-id">
+                            <svg class="crown-icon" width="20" height="20" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 12L24 18L18 6L12 18L6 12L8 30H28L30 12ZM4 10C5.65685 10 7 8.65685 7 7C7 5.34315 5.65685 4 4 4C2.34315 4 1 5.34315 1 7C1 8.65685 2.34315 10 4 10ZM32 10C33.6569 10 35 8.65685 35 7C35 5.34315 33.6569 4 32 4C30.3431 4 29 5.34315 29 7C29 8.65685 30.3431 10 32 10ZM18 4C19.6569 4 21 2.65685 21 1C21 -0.656854 19.6569 -2 18 -2C16.3431 -2 15 -0.656854 15 1C15 2.65685 16.3431 4 18 4Z" fill="#EEAD4F"/>
+                            </svg>
+                            <span class="id-text">tester0002</span>
+                        </div>
+                        <div class="prize-amount">₩95,000,000</div>
+                        <div class="game-title">스위트 보난자</div>
+                        <div class="win-date">2024. 11. 12 13:45:22</div>
+                    </div>
+                </div>
+
+                <!-- 3번 잭팟 아이템 -->
+                <div class="jackpot-item">
+                    <div class="game-thumbnail">
+                        <img src="https://img.game.co.kr/images/slots/money-train-3.jpg" alt="머니트레인3">
+                    </div>
+                    <div class="jackpot-info">
+                        <div class="winner-id">
+                            <svg class="crown-icon" width="20" height="20" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 12L24 18L18 6L12 18L6 12L8 30H28L30 12ZM4 10C5.65685 10 7 8.65685 7 7C7 5.34315 5.65685 4 4 4C2.34315 4 1 5.34315 1 7C1 8.65685 2.34315 10 4 10ZM32 10C33.6569 10 35 8.65685 35 7C35 5.34315 33.6569 4 32 4C30.3431 4 29 5.34315 29 7C29 8.65685 30.3431 10 32 10ZM18 4C19.6569 4 21 2.65685 21 1C21 -0.656854 19.6569 -2 18 -2C16.3431 -2 15 -0.656854 15 1C15 2.65685 16.3431 4 18 4Z" fill="#EEAD4F"/>
+                            </svg>
+                            <span class="id-text">tester0003</span>
+                        </div>
+                        <div class="prize-amount">₩88,500,000</div>
+                        <div class="game-title">머니트레인3</div>
+                        <div class="win-date">2024. 11. 12 13:30:15</div>
+                    </div>
+                </div>
+
+                <!-- 4번 잭팟 아이템 -->
+                <div class="jackpot-item">
+                    <div class="game-thumbnail">
+                        <img src="https://img.game.co.kr/images/slots/gates-of-olympus.jpg" alt="올림푸스의 문">
+                    </div>
+                    <div class="jackpot-info">
+                        <div class="winner-id">
+                            <svg class="crown-icon" width="20" height="20" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 12L24 18L18 6L12 18L6 12L8 30H28L30 12ZM4 10C5.65685 10 7 8.65685 7 7C7 5.34315 5.65685 4 4 4C2.34315 4 1 5.34315 1 7C1 8.65685 2.34315 10 4 10ZM32 10C33.6569 10 35 8.65685 35 7C35 5.34315 33.6569 4 32 4C30.3431 4 29 5.34315 29 7C29 8.65685 30.3431 10 32 10ZM18 4C19.6569 4 21 2.65685 21 1C21 -0.656854 19.6569 -2 18 -2C16.3431 -2 15 -0.656854 15 1C15 2.65685 16.3431 4 18 4Z" fill="#EEAD4F"/>
+                            </svg>
+                            <span class="id-text">tester0004</span>
+                        </div>
+                        <div class="prize-amount">₩82,000,000</div>
+                        <div class="game-title">올림푸스의 문</div>
+                        <div class="win-date">2024. 11. 12 13:15:33</div>
+                    </div>
+                </div>
+
+                <!-- 5번 잭팟 아이템 -->
+                <div class="jackpot-item">
+                    <div class="game-thumbnail">
+                        <img src="https://img.game.co.kr/images/slots/starburst.jpg" alt="스타버스트">
+                    </div>
+                    <div class="jackpot-info">
+                        <div class="winner-id">
+                            <svg class="crown-icon" width="20" height="20" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 12L24 18L18 6L12 18L6 12L8 30H28L30 12ZM4 10C5.65685 10 7 8.65685 7 7C7 5.34315 5.65685 4 4 4C2.34315 4 1 5.34315 1 7C1 8.65685 2.34315 10 4 10ZM32 10C33.6569 10 35 8.65685 35 7C35 5.34315 33.6569 4 32 4C30.3431 4 29 5.34315 29 7C29 8.65685 30.3431 10 32 10ZM18 4C19.6569 4 21 2.65685 21 1C21 -0.656854 19.6569 -2 18 -2C16.3431 -2 15 -0.656854 15 1C15 2.65685 16.3431 4 18 4Z" fill="#EEAD4F"/>
+                            </svg>
+                            <span class="id-text">tester0005</span>
+                        </div>
+                        <div class="prize-amount">₩78,000,000</div>
+                        <div class="game-title">스타버스트</div>
+                        <div class="win-date">2024. 11. 12 13:00:41</div>
+                    </div>
+                </div>
+
+                <!-- 6번 잭팟 아이템 -->
+                <div class="jackpot-item">
+                    <div class="game-thumbnail">
+                        <img src="https://img.game.co.kr/images/slots/fruit-party.jpg" alt="프루트 파티">
+                    </div>
+                    <div class="jackpot-info">
+                        <div class="winner-id">
+                            <svg class="crown-icon" width="20" height="20" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 12L24 18L18 6L12 18L6 12L8 30H28L30 12ZM4 10C5.65685 10 7 8.65685 7 7C7 5.34315 5.65685 4 4 4C2.34315 4 1 5.34315 1 7C1 8.65685 2.34315 10 4 10ZM32 10C33.6569 10 35 8.65685 35 7C35 5.34315 33.6569 4 32 4C30.3431 4 29 5.34315 29 7C29 8.65685 30.3431 10 32 10ZM18 4C19.6569 4 21 2.65685 21 1C21 -0.656854 19.6569 -2 18 -2C16.3431 -2 15 -0.656854 15 1C15 2.65685 16.3431 4 18 4Z" fill="#EEAD4F"/>
+                            </svg>
+                            <span class="id-text">tester0006</span>
+                        </div>
+                        <div class="prize-amount">₩75,500,000</div>
+                        <div class="game-title">프루트 파티</div>
+                        <div class="win-date">2024. 11. 12 12:45:18</div>
+                    </div>
+                </div>
+
+                <!-- 7번 잭팟 아이템 -->
+                <div class="jackpot-item">
+                    <div class="game-thumbnail">
+                        <img src="https://img.game.co.kr/images/slots/wolf-gold.jpg" alt="울프 골드">
+                    </div>
+                    <div class="jackpot-info">
+                        <div class="winner-id">
+                            <svg class="crown-icon" width="20" height="20" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 12L24 18L18 6L12 18L6 12L8 30H28L30 12ZM4 10C5.65685 10 7 8.65685 7 7C7 5.34315 5.65685 4 4 4C2.34315 4 1 5.34315 1 7C1 8.65685 2.34315 10 4 10ZM32 10C33.6569 10 35 8.65685 35 7C35 5.34315 33.6569 4 32 4C30.3431 4 29 5.34315 29 7C29 8.65685 30.3431 10 32 10ZM18 4C19.6569 4 21 2.65685 21 1C21 -0.656854 19.6569 -2 18 -2C16.3431 -2 15 -0.656854 15 1C15 2.65685 16.3431 4 18 4Z" fill="#EEAD4F"/>
+                            </svg>
+                            <span class="id-text">tester0007</span>
+                        </div>
+                        <div class="prize-amount">₩72,000,000</div>
+                        <div class="game-title">울프 골드</div>
+                        <div class="win-date">2024. 11. 12 12:30:55</div>
+                    </div>
+                </div>
+
+                <!-- 8번 잭팟 아이템 -->
+                <div class="jackpot-item">
+                    <div class="game-thumbnail">
+                        <img src="https://img.game.co.kr/images/slots/gonzos-quest.jpg" alt="곤조의 퀘스트">
+                    </div>
+                    <div class="jackpot-info">
+                        <div class="winner-id">
+                            <svg class="crown-icon" width="20" height="20" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 12L24 18L18 6L12 18L6 12L8 30H28L30 12ZM4 10C5.65685 10 7 8.65685 7 7C7 5.34315 5.65685 4 4 4C2.34315 4 1 5.34315 1 7C1 8.65685 2.34315 10 4 10ZM32 10C33.6569 10 35 8.65685 35 7C35 5.34315 33.6569 4 32 4C30.3431 4 29 5.34315 29 7C29 8.65685 30.3431 10 32 10ZM18 4C19.6569 4 21 2.65685 21 1C21 -0.656854 19.6569 -2 18 -2C16.3431 -2 15 -0.656854 15 1C15 2.65685 16.3431 4 18 4Z" fill="#EEAD4F"/>
+                            </svg>
+                            <span class="id-text">tester0008</span>
+                        </div>
+                        <div class="prize-amount">₩68,500,000</div>
+                        <div class="game-title">곤조의 퀘스트</div>
+                        <div class="win-date">2024. 11. 12 12:15:27</div>
+                    </div>
+                </div>
+
+                <!-- 9번 잭팟 아이템 -->
+                <div class="jackpot-item">
+                    <div class="game-thumbnail">
+                        <img src="https://img.game.co.kr/images/slots/reactoonz.jpg" alt="리액툰즈">
+                    </div>
+                    <div class="jackpot-info">
+                        <div class="winner-id">
+                            <svg class="crown-icon" width="20" height="20" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 12L24 18L18 6L12 18L6 12L8 30H28L30 12ZM4 10C5.65685 10 7 8.65685 7 7C7 5.34315 5.65685 4 4 4C2.34315 4 1 5.34315 1 7C1 8.65685 2.34315 10 4 10ZM32 10C33.6569 10 35 8.65685 35 7C35 5.34315 33.6569 4 32 4C30.3431 4 29 5.34315 29 7C29 8.65685 30.3431 10 32 10ZM18 4C19.6569 4 21 2.65685 21 1C21 -0.656854 19.6569 -2 18 -2C16.3431 -2 15 -0.656854 15 1C15 2.65685 16.3431 4 18 4Z" fill="#EEAD4F"/>
+                            </svg>
+                            <span class="id-text">tester0009</span>
+                        </div>
+                        <div class="prize-amount">₩65,000,000</div>
+                        <div class="game-title">리액툰즈</div>
+                        <div class="win-date">2024. 11. 12 12:00:39</div>
+                    </div>
+                </div>
+
+                <!-- 10번 잭팟 아이템 -->
+                <div class="jackpot-item">
+                    <div class="game-thumbnail">
+                        <img src="https://img.game.co.kr/images/slots/the-dog-house.jpg" alt="더 도그 하우스">
+                    </div>
+                    <div class="jackpot-info">
+                        <div class="winner-id">
+                            <svg class="crown-icon" width="20" height="20" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 12L24 18L18 6L12 18L6 12L8 30H28L30 12ZM4 10C5.65685 10 7 8.65685 7 7C7 5.34315 5.65685 4 4 4C2.34315 4 1 5.34315 1 7C1 8.65685 2.34315 10 4 10ZM32 10C33.6569 10 35 8.65685 35 7C35 5.34315 33.6569 4 32 4C30.3431 4 29 5.34315 29 7C29 8.65685 30.3431 10 32 10ZM18 4C19.6569 4 21 2.65685 21 1C21 -0.656854 19.6569 -2 18 -2C16.3431 -2 15 -0.656854 15 1C15 2.65685 16.3431 4 18 4Z" fill="#EEAD4F"/>
+                            </svg>
+                            <span class="id-text">tester0010</span>
+                        </div>
+                        <div class="prize-amount">₩62,000,000</div>
+                        <div class="game-title">더 도그 하우스</div>
+                        <div class="win-date">2024. 11. 12 11:45:14</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 이벤트 섹션 추가 -->
+    <div class="section-container event-section">
+        <div class="section-header">
+            <div class="title-wrapper">
+                <h2 class="section-title">EVENT</h2>
+                <div class="title-underline"></div>
+            </div>
+        </div>
+        
+        <!-- 이벤트 컨텐츠 컨테이너 -->
+        <div class="event-content">
+            <!-- 첫 번째 줄 - 메인 이벤트 -->
+            <div class="event-main">
+                <a href="/events/main" class="event-link">
+                    <img src="img/main-event-banner.jpg" alt="메인 이벤트">
+                    <div class="event-info">
+                        <h3 class="event-title">신규 가입 이벤트</h3>
+                        <p class="event-period">2024.01.01 ~ 2024.12.31</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 두 번째 줄 - 서브 이벤트 -->
+            <div class="event-sub-container">
+                <div class="event-sub">
+                    <a href="/events/sub1" class="event-link">
+                        <img src="img/sub-event-1.jpg" alt="서브 이벤트 1">
+                        <div class="event-info">
+                            <h3 class="event-title">첫충전 보너스</h3>
+                            <p class="event-period">2024.01.01 ~ 2024.12.31</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="event-sub">
+                    <a href="/events/sub2" class="event-link">
+                        <img src="img/sub-event-2.jpg" alt="서브 이벤트 2">
+                        <div class="event-info">
+                            <h3 class="event-title">주말 이벤트</h3>
+                            <p class="event-period">2024.01.01 ~ 2024.12.31</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="event-sub">
+                    <a href="/events/sub3" class="event-link">
+                        <img src="img/sub-event-3.jpg" alt="서브 이벤트 3">
+                        <div class="event-info">
+                            <h3 class="event-title">친구 초대 이벤트</h3>
+                            <p class="event-period">2024.01.01 ~ 2024.12.31</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 이벤트 섹션 다음에 추가 -->
+    <div class="vendor-logo-section">
+        <div class="vendor-logo-slider">
+            <div class="vendor-logo-track">
+                <!-- 첫번째 세트 -->
+                <img src="img/verder-logo-icon/vender-logo-evolution.png" alt="Evolution" class="vendor-logo">
+                <img src="img/verder-logo-icon/vender-logo-pragmatic.png" alt="Pragmatic Play" class="vendor-logo">
+                <img src="img/verder-logo-icon/vender-logo-cq9.png" alt="CQ9" class="vendor-logo">
+                <img src="img/verder-logo-icon/vender-logo-habanero.png" alt="Habanero" class="vendor-logo">
+                <img src="img/verder-logo-icon/vender-logo-pocket.png" alt="Pocket Games" class="vendor-logo">
+                <img src="img/verder-logo-icon/vender-logo-woo.png" alt="Woo Casino" class="vendor-logo">
+                <img src="img/verder-logo-icon/vender-logo-playngo.png" alt="Play'n GO" class="vendor-logo">
+                <img src="img/verder-logo-icon/vender-logo-bet365.png" alt="Bet365" class="vendor-logo">
+                <img src="img/verder-logo-icon/vender-logo-redtiger.png" alt="Red Tiger" class="vendor-logo">
+                <img src="img/verder-logo-icon/vender-logo-skgaming.png" alt="SK Gaming" class="vendor-logo">
+                <!-- 두번째 세트 (무한 스크롤을 위한 복제) -->
+                <img src="img/verder-logo-icon/vender-logo-evolution.png" alt="Evolution" class="vendor-logo">
+                <img src="img/verder-logo-icon/vender-logo-pragmatic.png" alt="Pragmatic Play" class="vendor-logo">
+                <img src="img/verder-logo-icon/vender-logo-cq9.png" alt="CQ9" class="vendor-logo">
+                <img src="img/verder-logo-icon/vender-logo-habanero.png" alt="Habanero" class="vendor-logo">
+                <img src="img/verder-logo-icon/vender-logo-pocket.png" alt="Pocket Games" class="vendor-logo">
+                <img src="img/verder-logo-icon/vender-logo-woo.png" alt="Woo Casino" class="vendor-logo">
+                <img src="img/verder-logo-icon/vender-logo-playngo.png" alt="Play'n GO" class="vendor-logo">
+                <img src="img/verder-logo-icon/vender-logo-bet365.png" alt="Bet365" class="vendor-logo">
+                <img src="img/vender-logo-icon/vender-logo-redtiger.png" alt="Red Tiger" class="vendor-logo">
+                <img src="img/vender-logo-icon/vender-logo-skgaming.png" alt="SK Gaming" class="vendor-logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- 게임사 로고 슬라이더 다음에 추가 -->
+    
+    <!-- footer 영역 -->
+    <div id="footer-container"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,692 @@
+/* 기존 스타일 유지 */
+
+/* 게임 관리 페이지 스타일 */
+:root {
+    --primary-color: #007bff;
+    --danger-color: #dc3545;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --dark-bg: #343a40;
+    --light-bg: #f8f9fa;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: var(--light-bg);
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.game-control {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.timer-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.timer {
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    margin: 20px 0;
+}
+
+.game-status {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+#gameStatus {
+    color: var(--primary-color);
+}
+
+.control-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#startGameBtn {
+    background-color: var(--success-color);
+    color: white;
+}
+
+#stopGameBtn {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.settings-form {
+    background: var(--light-bg);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.settings-form h3 {
+    margin-top: 0;
+    color: var(--dark-bg);
+}
+
+.settings-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.betting-status {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.bet-info {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.bet-info h4 {
+    margin: 0 0 10px 0;
+    color: var(--primary-color);
+}
+
+.result-input {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.result-input select {
+    padding: 8px 15px;
+    margin-right: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .betting-status {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.cancel-bet-btn {
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.cancel-bet-btn:hover {
+    background-color: #c82333;
+}
+
+.cancel-bet-btn:disabled {
+    background-color: #dc354580;
+    cursor: not-allowed;
+}
+
+.game-history {
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.history-table-container {
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.history-table th,
+.history-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.history-table th {
+    background-color: var(--light-bg);
+    font-weight: bold;
+    color: var(--dark-bg);
+}
+
+.history-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.profit {
+    color: var(--success-color);
+}
+
+.loss {
+    color: var(--danger-color);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 8px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.pagination span {
+    font-size: 14px;
+    color: #666;
+}
+
+/* 실시간 베팅 현황 애니메이션 */
+@keyframes highlight {
+    from { background-color: rgba(40, 167, 69, 0.2); }
+    to { background-color: transparent; }
+}
+
+.highlight {
+    animation: highlight 1s ease-out;
+}
+
+/* 베팅 스팟 설정 스타일 */
+.betting-options-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.betting-options-card .card-title {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.betting-options-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.betting-options-table th,
+.betting-options-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.betting-options-table input {
+    width: 80px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.betting-options-table .save-option {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.betting-options-table .save-option:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.betting-options-footer {
+    margin-top: 20px;
+    text-align: right;
+    padding: 10px;
+}
+
+.betting-options-save {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.betting-options-save:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.betting-options-save:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* 카운트다운 오버레이 스타일 */
+.countdown-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.countdown-circle {
+    width: 150px;
+    height: 150px;
+    border: 3px solid white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: zoomOut 0.5s ease-out;
+}
+
+.countdown-number {
+    color: white;
+    font-size: 72px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+@keyframes zoomOut {
+    from {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* 결과 입력 스타일 */
+.card-input-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.spot-cards {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card-inputs {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.card-inputs input {
+    width: 98px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.result-preview {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.spot-results {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 15px 0;
+}
+
+.spot-result {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 게임 상세 정보 모달 스타일 */
+.game-details-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.spot-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.spot-detail {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.cards {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.card {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+/* 베팅 취소 알림 애니메이션 */
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.bet-cancelled-notification {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+button[onclick="updateGameSettings()"] {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button[onclick="updateGameSettings()"]:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+button[onclick="updateGameSettings()"]:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* 홀/짝 버튼 스타일 */
+.odd-even-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.odd-even-btn {
+    padding: 10px 30px;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.odd-even-btn[data-value="odd"] {
+    background-color: rgba(255, 99, 99, 0.7);
+}
+
+.odd-even-btn[data-value="even"] {
+    background-color: rgba(99, 148, 255, 0.7);
+}
+
+.odd-even-btn.selected {
+    border: 2px solid #000;
+}
+
+.odd-even-btn[data-value="odd"].selected {
+    background-color: rgba(255, 99, 99, 1);
+}
+
+.odd-even-btn[data-value="even"].selected {
+    background-color: rgba(99, 148, 255, 1);
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 28.4px;
+    padding: 0.275rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* select 요소에 대한 특별한 스타일 제거 */
+select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 8px 10px;
+    padding-right: 1.75rem;
+}
+
+/* 게임 설정 섹션 */
+.game-settings {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.setting-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: var(--light-bg);
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.setting-item:hover {
+    background: #f0f0f0;
+}
+
+.setting-item label {
+    flex: 0 0 200px;
+    font-weight: 500;
+    color: #333;
+}
+
+.setting-item input[type="number"],
+.setting-item input[type="text"],
+.setting-item select {
+    flex: 1;
+    max-width: 200px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.setting-item input[type="number"]:focus,
+.setting-item input[type="text"]:focus,
+.setting-item select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+.setting-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.setting-item input:disabled,
+.setting-item select:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* 설정 저장 버튼 */
+.settings-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.save-settings {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.save-settings:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+.save-settings:active {
+    transform: translateY(0);
+}
+
+/* 설정 그룹 제목 */
+.settings-group-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    margin: 30px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+} 
