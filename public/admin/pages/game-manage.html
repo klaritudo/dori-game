@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게임 관리</title>
+    <link rel="stylesheet" href="../css/admin-base.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <div class="game-control">
+        <div class="timer-section">
+            <h2>게임 컨트롤</h2>
+            <div class="timer" id="gameTimer">00:00</div>
+            <div class="betting-timer" id="bettingTimer">베팅 마감: 00:00</div>
+            <div class="game-status">
+                상태: <span id="gameStatus">대기중</span>
+            </div>
+        </div>
+        
+        <div class="control-buttons">
+            <button id="startGame">게임 시작</button>
+            <button id="stopGame">게임 정지</button>
+        </div>
+
+        <div class="settings-group-title">게임 기본 설정</div>
+        <div class="game-settings">
+            <div class="setting-item">
+                <label for="bettingMode">베팅 모드</label>
+                <select id="bettingMode">
+                    <option value="single" selected>단폴 베팅</option>
+                    <option value="combination">조합 베팅</option>
+                </select>
+            </div>
+            <div class="setting-item">
+                <label for="totalGameTime">전체 게임 시간(초)</label>
+                <input type="number" id="totalGameTime" value="60" min="5">
+            </div>
+            <div class="setting-item">
+                <label for="bettingEndTime">베팅 마감 시간(초)</label>
+                <input type="number" id="bettingEndTime" value="10" min="3">
+            </div>
+            <div class="setting-item">
+                <label for="autoBettingEnabled">자동 베팅 사용</label>
+                <input type="checkbox" id="autoBettingEnabled" checked>
+            </div>
+            <div class="setting-item">
+                <label for="autoBettingAmount">자동 베팅 금액</label>
+                <input type="number" id="autoBettingAmount" value="1000" min="1000">
+            </div>
+            <div class="setting-item">
+                <label for="tieEnabled">타이(동점) 처리 사용</label>
+                <input type="checkbox" id="tieEnabled" checked>
+            </div>
+            <div class="setting-item">
+                <label for="tieDefaultAction">기본 타이 처리 방식</label>
+                <select id="tieDefaultAction">
+                    <option value="win">승리 처리</option>
+                    <option value="lose">패배 처리</option>
+                    <option value="tie" selected>동점 처리</option>
+                </select>
+            </div>
+            <div class="setting-item">
+                <label for="commissionRate">수수료율 (%)</label>
+                <input type="number" id="commissionRate" value="0" min="0" max="100" step="0.1">
+            </div>
+            <div class="settings-actions">
+                <button class="save-settings" id="saveGameSettings">설정 저장</button>
+            </div>
+        </div>
+
+        <div class="betting-status">
+            <div class="bet-info">
+                <h4>홀</h4>
+                <p>총 베팅: <span id="bet-홀-total">0</span></p>
+                <button class="cancel-bet-btn" onclick="wsManager.cancelBet('홀')">베팅 취소</button>
+            </div>
+            <div class="bet-info">
+                <h4>짝</h4>
+                <p>총 베팅: <span id="bet-짝-total">0</span></p>
+                <button class="cancel-bet-btn" onclick="wsManager.cancelBet('짝')">베팅 취소</button>
+            </div>
+            <div class="bet-info">
+                <h4>1</h4>
+                <p>총 베팅: <span id="bet-1-total">0</span></p>
+                <button class="cancel-bet-btn" onclick="wsManager.cancelBet('1')">베팅 취소</button>
+            </div>
+            <div class="bet-info">
+                <h4>2</h4>
+                <p>총 베팅: <span id="bet-2-total">0</span></p>
+                <button class="cancel-bet-btn" onclick="wsManager.cancelBet('2')">베팅 취소</button>
+            </div>
+            <div class="bet-info">
+                <h4>3</h4>
+                <p>총 베팅: <span id="bet-3-total">0</span></p>
+                <button class="cancel-bet-btn" onclick="wsManager.cancelBet('3')">베팅 취소</button>
+            </div>
+        </div>
+
+        <div class="game-history">
+            <h3>게임 히스토리</h3>
+            <div class="history-table-container">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>게임번호</th>
+                            <th>시작시간</th>
+                            <th>결과시간</th>
+                            <th>결과</th>
+                            <th>총 베팅액</th>
+                            <th>총 지급액</th>
+                            <th>수익</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTableBody">
+                        <!-- 게임 히스토리 클릭 이벤트 추가 -->
+                        <script>
+                            document.getElementById('historyTableBody').addEventListener('click', (e) => {
+                                const row = e.target.closest('tr');
+                                if (row) {
+                                    const gameNumber = row.cells[0].textContent;
+                                    wsManager.showGameDetails(gameNumber);
+                                }
+                            });
+                        </script>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <button id="prevPage" onclick="wsManager.prevHistoryPage()">이전</button>
+                    <span>페이지 <span id="currentPage">1</span> / <span id="totalPages">1</span></span>
+                    <button id="nextPage" onclick="wsManager.nextHistoryPage()">다음</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="result-input">
+            <h3>게임 결과 입력</h3>
+            <div class="card-input-section">
+                <div class="spot-cards">
+                    <h4>홀/짝 선택</h4>
+                    <div id="oddEvenContainer"></div>
+                </div>
+                <div class="spot-cards" id="spot1-cards">
+                    <h4>1번 스팟 카드</h4>
+                    <div class="card-inputs">
+                        <input type="number" min="1" max="10" placeholder="카드1">
+                        <input type="number" min="1" max="10" placeholder="카드2">
+                        <input type="number" min="1" max="10" placeholder="카드3">
+                        <input type="number" min="1" max="10" placeholder="카드4">
+                        <input type="number" min="1" max="10" placeholder="카드5">
+                    </div>
+                </div>
+                <div class="spot-cards" id="spot2-cards">
+                    <h4>2번 스팟 카드</h4>
+                    <div class="card-inputs">
+                        <input type="number" min="1" max="10" placeholder="카드1">
+                        <input type="number" min="1" max="10" placeholder="카드2">
+                        <input type="number" min="1" max="10" placeholder="카드3">
+                        <input type="number" min="1" max="10" placeholder="카드4">
+                        <input type="number" min="1" max="10" placeholder="카드5">
+                    </div>
+                </div>
+                <div class="spot-cards" id="spot3-cards">
+                    <h4>3번 스팟 카드</h4>
+                    <div class="card-inputs">
+                        <input type="number" min="1" max="10" placeholder="카드1">
+                        <input type="number" min="1" max="10" placeholder="카드2">
+                        <input type="number" min="1" max="10" placeholder="카드3">
+                        <input type="number" min="1" max="10" placeholder="카드4">
+                        <input type="number" min="1" max="10" placeholder="카드5">
+                    </div>
+                </div>
+            </div>
+            <div class="result-preview">
+                <h4>결과 미리보기</h4>
+                <div id="previewResults">
+                    <div>1번: <span id="preview-spot1">-</span> <span id="oddEven-spot1"></span></div>
+                    <div>2번: <span id="preview-spot2">-</span> <span id="oddEven-spot2"></span></div>
+                    <div>3번: <span id="preview-spot3">-</span> <span id="oddEven-spot3"></span></div>
+                </div>
+                <button id="confirmResults" onclick="confirmResults()" disabled class="confirm-button">결과 확정</button>
+            </div>
+        </div>
+
+        <div class="betting-options-card">
+            <div class="card-header">
+                <h4 class="card-title">베팅 스팟 설정</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="betting-options-table">
+                        <thead>
+                            <tr>
+                                <th>베팅 옵션</th>
+                                <th>최소 베팅</th>
+                                <th>최대 베팅</th>
+                                <th>배당률</th>
+                                <th>상태</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bettingOptionsTable">
+                            <tr>
+                                <td>스팟 1</td>
+                                <td><input type="number" class="min-bet" value="1000" min="1000"></td>
+                                <td><input type="number" class="max-bet" value="10000000" min="1000"></td>
+                                <td><input type="number" class="odds" value="1.95" min="1" step="0.01"></td>
+                                <td>
+                                    <select class="status">
+                                        <option value="active" selected>활성화</option>
+                                        <option value="inactive">비활성화</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>스팟 2</td>
+                                <td><input type="number" class="min-bet" value="1000" min="1000"></td>
+                                <td><input type="number" class="max-bet" value="10000000" min="1000"></td>
+                                <td><input type="number" class="odds" value="1.95" min="1" step="0.01"></td>
+                                <td>
+                                    <select class="status">
+                                        <option value="active" selected>활성화</option>
+                                        <option value="inactive">비활성화</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>스팟 3</td>
+                                <td><input type="number" class="min-bet" value="1000" min="1000"></td>
+                                <td><input type="number" class="max-bet" value="10000000" min="1000"></td>
+                                <td><input type="number" class="odds" value="1.95" min="1" step="0.01"></td>
+                                <td>
+                                    <select class="status">
+                                        <option value="active" selected>활성화</option>
+                                        <option value="inactive">비활성화</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>홀</td>
+                                <td><input type="number" class="min-bet" value="1000" min="1000"></td>
+                                <td><input type="number" class="max-bet" value="10000000" min="1000"></td>
+                                <td><input type="number" class="odds" value="1.95" min="1" step="0.01"></td>
+                                <td>
+                                    <select class="status">
+                                        <option value="active" selected>활성화</option>
+                                        <option value="inactive">비활성화</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>짝</td>
+                                <td><input type="number" class="min-bet" value="1000" min="1000"></td>
+                                <td><input type="number" class="max-bet" value="10000000" min="1000"></td>
+                                <td><input type="number" class="odds" value="1.95" min="1" step="0.01"></td>
+                                <td>
+                                    <select class="status">
+                                        <option value="active" selected>활성화</option>
+                                        <option value="inactive">비활성화</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="betting-options-footer">
+                        <button id="saveBettingOptions" class="betting-options-save">베팅 스팟 설정 저장</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .result-preview {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+    }
+
+    .result-preview h4 {
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    #previewResults div {
+        margin: 5px 0;
+        font-size: 14px;
+    }
+
+    #previewResults span {
+        font-weight: bold;
+        margin-left: 5px;
+    }
+
+    .confirm-button {
+        margin-top: 15px;
+        padding: 8px 16px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .confirm-button:disabled {
+        background-color: #6c757d;
+        cursor: not-allowed;
+    }
+
+    .confirm-button:hover:not(:disabled) {
+        background-color: #218838;
+    }
+
+    #oddEven-spot1, #oddEven-spot2, #oddEven-spot3 {
+        display: inline-block;
+        margin-left: 8px;
+        font-weight: normal;
+        font-size: 0.9em;
+    }
+    </style>
+
+    <script type="module" src="/public/admin/js/websocket-manager.js"></script>
+    <script type="module" src="/public/admin/js/game-management/game-control.js"></script>
+</body>
+</html> 
